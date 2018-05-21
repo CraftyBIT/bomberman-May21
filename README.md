@@ -11,6 +11,6 @@ Created by Charles, Cornell, David, Richard
 ### Inspiration
 2D Original Bomberman 
 
-RESOURCES USED: 
+## RESOURCES USED: 
 
 https://www.youtube.com/watch?v=iwbwTN3tmI0 (TUTORIAL)
