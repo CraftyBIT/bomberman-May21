@@ -1,5 +1,3 @@
-# bomberman-May21
-
 # Project Bomberman
 AP Computer Science Final Project
 
