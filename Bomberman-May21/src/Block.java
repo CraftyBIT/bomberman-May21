@@ -21,7 +21,7 @@ public class Block extends Rock
   //pre-condition: the block isBreakable
   void Break()
   {
-    if (!canBreak)
+    if (!canBreak) //still to check if block is actually breakable depending on how other classes work
       return;
       
     Location currentLoc = getLocation();
