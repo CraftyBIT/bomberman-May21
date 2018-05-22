@@ -5,7 +5,7 @@ import info.gridworld.grid.Location;
 
 import java.awt.Color;
 
-public class Bomber extends actor
+public class Bomber extends Actor
 {
 	private int myBombs; // Amount of Bombs placed by this Actor on the Grid at instance
 
