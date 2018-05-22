@@ -11,7 +11,7 @@ public class PowerUp extends Rock
 	
 	public PowerUp()
 	{
-		powerUpID = (int)(Math.random()) * 2; //change to number of powerup types
+		powerUpID = (int)(Math.random() * 2); //change to number of powerup types
 	}
 	
 	int getID()
