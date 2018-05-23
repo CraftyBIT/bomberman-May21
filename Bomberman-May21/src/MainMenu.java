@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 public class MainMenu extends JFrame implements ActionListener
 {
+	private static final long serialVersionUID = 1L;
 	private JButton startButton, howToPlayButton, quitButton;
 	
 	public MainMenu()
