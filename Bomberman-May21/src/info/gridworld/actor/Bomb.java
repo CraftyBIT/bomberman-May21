@@ -38,7 +38,7 @@ public class Bomb extends Rock {
 		
 		for (Location loc : LocsInRange)
 		{
-			loc.getActor().destruct() //make it so that if instance of BLock, destruct
+			loc.getActor().destruct() //make it so that if instance of BLock, destruct, and then removeself from grid, also if there is a player in the range
 		}
 	}
 }
