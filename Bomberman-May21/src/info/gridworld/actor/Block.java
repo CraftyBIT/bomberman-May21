@@ -28,7 +28,7 @@ public class Block extends Rock
     
     if (Math.random() < .5) //probabily of powerup is 50% 
     {
-      PowerUp pu = new PowerUp(1);  //INCOMPLETE: Make a random chance of spawning a Powerup ID ff)
+      PowerUp pu = new PowerUp(); 
       pu.putSelfInGrid(currentLoc);
       removeSelfFromGrid();
       return;
