@@ -30,12 +30,13 @@ public class Block extends Rock
       			{return;}
       
     		Location currentLoc = getLocation();
+		Grid g = getGrid();
     
     		if (Math.random() < .5) //probabily of powerup is 50% 
     		{
       			PowerUp pu = new PowerUp(); 
-      			pu.putSelfInGrid(currentLoc);
-      			removeSelfFromGrid();
+			removeSelfFromGrid();
+      			pu.putSelfInGrid(g, currentLoc);	
       			return;
    		}
     
