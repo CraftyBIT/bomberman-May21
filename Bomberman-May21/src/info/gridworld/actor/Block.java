@@ -19,7 +19,7 @@ public class Block extends Rock
 		return canBreak;
 	}
 
-  void Break()
+  void break()
   {
     if (!canBreak) //still to check if block is actually breakable depending on how other classes work
       {return;}
