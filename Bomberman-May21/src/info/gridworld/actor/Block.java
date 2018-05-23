@@ -1,3 +1,6 @@
+//Written by Richard Zhu
+//2018 Final Project APCS
+
 package info.gridworld.actor;
 
 import info.gridworld.grid.Grid;
