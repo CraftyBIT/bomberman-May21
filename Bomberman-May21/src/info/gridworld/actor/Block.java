@@ -1,3 +1,6 @@
+//Written by Richard Zhu
+//2018 Final Project APCS
+
 package info.gridworld.actor;
 
 import info.gridworld.grid.Grid;
@@ -9,35 +12,37 @@ public class Block extends Rock
 {
 	private boolean canBreak; //determines whether block is breakable or no
 	
+	public Block()//if empty constructor, canBreak = true
+  	{
+   		 canBreak = true;
+	}
+	
 	public Block(boolean cB)
   	{
    		 canBreak = cB;
 	}
 	
-	boolean isBreakable()
+	public boolean isBreakable()
 	{
 		return canBreak;
 	}
 
-  void Break()
-  {
-    if (!canBreak) //still to check if block is actually breakable depending on how other classes work
-      {return;}
+  	public void destruct()
+  	{
+   		if (!canBreak) //still to check if block is actually breakable depending on how other classes work
+      			{return;}
       
-    Location currentLoc = getLocation();
+    		Location currentLoc = getLocation();
+		Grid g = getGrid();
     
-    if (Math.random() < .5) //probabily of powerup is 50% 
-    {
-      PowerUp pu = new PowerUp(1);  //INCOMPLETE: Make a random chance of spawning a Powerup ID ff)
-      pu.putSelfInGrid(currentLoc);
-      removeSelfFromGrid();
-      return;
-    }
+    		if (Math.random() < .5) //probabily of powerup is 50% 
+    		{
+      			PowerUp pu = new PowerUp(); 
+			removeSelfFromGrid();
+      			pu.putSelfInGrid(g, currentLoc);	
+      			return;
+   		}
     
-    removeSelfFromGrid();
-  }
-	
-
-
-
+   		 removeSelfFromGrid();
+  	}
 }
