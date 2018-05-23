@@ -10,19 +10,19 @@ public class Block extends Rock
 	private boolean canBreak; //determines whether block is breakable or no
 	
 	public Block(boolean cB)
-  {
-    canBreak = cB;
+  	{
+   		 canBreak = cB;
 	}
 	
-	boolean isBreakable(){
-		return isBreakable;
+	boolean isBreakable()
+	{
+		return canBreak;
 	}
-  
-  //pre-condition: the block isBreakable
+
   void Break()
   {
     if (!canBreak) //still to check if block is actually breakable depending on how other classes work
-      return;
+      {return;}
       
     Location currentLoc = getLocation();
     
@@ -31,6 +31,7 @@ public class Block extends Rock
       PowerUp pu = new PowerUp(1);  //INCOMPLETE: Make a random chance of spawning a Powerup ID ff)
       pu.putSelfInGrid(currentLoc);
       removeSelfFromGrid();
+      return;
     }
     
     removeSelfFromGrid();
