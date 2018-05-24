@@ -6,7 +6,8 @@ import info.gridworld.grid.Location;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class Bomb extends Rock {
+public class Bomb extends Rock implements Destructable
+{
 	
 	private int bombPower;
 	private ArrayList<Location> LocsInRange;
@@ -42,5 +43,10 @@ public class Bomb extends Rock {
 		{
 			loc.getActor().destruct() //make it so that if instance of BLock, destruct, and then removeself from grid, also if there is a player in the range
 		}
+	}
+	
+	public void destruct()
+	{
+		explode();
 	}
 }
