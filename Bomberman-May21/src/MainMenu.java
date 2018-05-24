@@ -19,11 +19,11 @@ public class MainMenu extends JFrame implements ActionListener
 		setLocationByPlatform(true);
 		
 		startButton = new JButton("Start!");
-		startButton.addActionListener(e -> this.dispose());
+		startButton.addActionListener(this);
 		howToPlayButton = new JButton("How to Play");
-		howToPlayButton.addActionListener(e -> this.dispose());
+		howToPlayButton.addActionListener(this);
 		quitButton = new JButton("Quit");
-		quitButton.addActionListener(e -> this.dispose());
+		quitButton.addActionListener(this);
 		
 		this.setLayout(new BorderLayout());
 		this.add(startButton, BorderLayout.NORTH);
@@ -42,6 +42,7 @@ public class MainMenu extends JFrame implements ActionListener
 		}
 		if (event.getSource() == howToPlayButton){
 			Instructions instruc = new Instructions();
+			this.dispose();
 			//open instructions
 		}
 		if (event.getSource() == quitButton){
