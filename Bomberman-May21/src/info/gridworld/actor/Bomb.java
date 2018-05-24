@@ -1,8 +1,10 @@
 package info.gridworld.actor;
 
 import info.gridworld.actor.Rock;
+import info.gridworld.grid.Location;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Bomb extends Rock {
 	
@@ -14,7 +16,7 @@ public class Bomb extends Rock {
 
 	}
 	
-	public explode()
+	public void explode()
 	{
 		ArrayList<Location> LocsInRange = new ArrayList<Location>;
 		
