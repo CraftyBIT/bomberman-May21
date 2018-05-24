@@ -8,7 +8,7 @@ import info.gridworld.grid.Location;
 
 import java.awt.Color;
 
-public class Block extends Rock
+public class Block extends Rock implements Destructable
 {
 	private boolean canBreak; //determines whether block is breakable or no
 	
