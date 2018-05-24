@@ -13,7 +13,7 @@ public class MainMenu extends JFrame implements ActionListener
 	public MainMenu()
 	{
 		super("Bomberbitch");
-		setSize(1280, 720);
+		setSize(270,100);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);
@@ -26,8 +26,8 @@ public class MainMenu extends JFrame implements ActionListener
 		quitButton.addActionListener(this);
 		
 		this.setLayout(new BorderLayout());
-		this.add(startButton, BorderLayout.NORTH);
-		this.add(howToPlayButton, BorderLayout.SOUTH);
+		this.add(startButton, BorderLayout.LINE_START);
+		this.add(howToPlayButton, BorderLayout.LINE_END);
 		this.add(quitButton, BorderLayout.CENTER);
 		
 		
