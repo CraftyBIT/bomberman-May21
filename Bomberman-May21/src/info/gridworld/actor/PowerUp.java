@@ -4,7 +4,7 @@ import info.gridworld.actor.Rock;
 
 import java.awt.Color;
 
-public class PowerUp extends Rock
+public class PowerUp extends Rock implements Destructable
 {
 	
 	private int powerUpID;
@@ -17,6 +17,10 @@ public class PowerUp extends Rock
 	int getID()
 	{
 		return powerUpID;
+	}
+	
+	void destruct()
+	{
 	}
 
 }
