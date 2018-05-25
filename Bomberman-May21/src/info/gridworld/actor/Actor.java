@@ -184,7 +184,7 @@ public class Actor
         setDirection(getDirection() + Location.HALF_CIRCLE);
     }
     
-    public void destruct()
+    public void destruct()  //VERY IMPORTANT METHOD; OVERRIDEN BY SUBLASSES TO DO FUNCTION WHEN HIT BY BOMB
     {}
 
     /**
