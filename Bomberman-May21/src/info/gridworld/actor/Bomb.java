@@ -26,7 +26,7 @@ public class Bomb extends Rock
 		Location wLoc = getLocation().getAdjacentLocation(Location.WEST);
 		Location sLoc = getLocation().getAdjacentLocation(Location.SOUTH);
 		
-		for (int n = 0; n < bombPower; n++)
+		for (int n = 0; n < bombPower; n++) //fixed issues with Location variable
 		{
 			LocsInRange.add(nLoc);
 			LocsInRange.add(eLoc);
