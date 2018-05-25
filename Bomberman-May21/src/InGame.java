@@ -1,15 +1,22 @@
+import info.gridworld.actor.Actor;
+import info.gridworld.actor.Block;
+import info.gridworld.grid.BoundedGrid;
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
+
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-public class InGame extends JFrame implements ActionListener
+public class InGame<E> extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JButton startButton, howToPlayButton, quitButton;
 	private JPanel inGame;
 	private JLabel[][] grid;
+	private Actor[][] actors;
 	
 	public InGame()
 	{
@@ -20,18 +27,25 @@ public class InGame extends JFrame implements ActionListener
 		setLocationByPlatform(true);
 		
 		inGame = new JPanel(new BorderLayout());
+		actors = new Actor[11][15];
+		
+		for (int num = 0; num < 15; num++)
+		{
+			actors[0][num] = new Block(false);
+		}
+		
 		grid = new JLabel[11][15];
+		
 		for (int row = 0; row < 11; row++)
 		{
 			for (int col = 0; col < 15; col++)
 			{
-				grid[row][col] = new JLabel();
-				grid[row][col].setBorder(new LineBorder(Color.BLACK));
-				grid[row][col].setOpaque(true);
-				inGame.add(grid[row][col]);
+				if (actors[row][col] instanceof Block)
+				{
+					grid[row][col] = new JLabel("|||");
+				}
 			}
 		}
-		grid[0][0].setBackground(Color.WHITE);
 		
 		setContentPane(inGame);
 		setVisible(true);
