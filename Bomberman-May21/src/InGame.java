@@ -46,6 +46,7 @@ public class InGame<E> extends JFrame implements ActionListener
 				}
 			}
 		}
+		inGame.add(grid, BorderLayout.CENTER);
 		
 		setContentPane(inGame);
 		setVisible(true);
