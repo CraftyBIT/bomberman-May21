@@ -183,6 +183,9 @@ public class Actor
     {
         setDirection(getDirection() + Location.HALF_CIRCLE);
     }
+    
+    public void destruct()
+    {}
 
     /**
      * Creates a string that describes this actor.

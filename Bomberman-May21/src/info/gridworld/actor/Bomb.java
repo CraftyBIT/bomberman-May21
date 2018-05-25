@@ -6,7 +6,7 @@ import info.gridworld.grid.Location;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class Bomb extends Rock implements Destructable
+public class Bomb extends Rock
 {
 	
 	private int bombPower;
@@ -19,12 +19,12 @@ public class Bomb extends Rock implements Destructable
 	
 	public void explode()
 	{
-		ArrayList<Location> LocsInRange = new ArrayList<Location>;
+		ArrayList<Location> LocsInRange = new ArrayList<Location>();
 		
-		nLoc = getLocation().getAdjacentLocation(Location.NORTH);
-		eLoc = getLocation().getAdjacentLocation(Location.EAST);
-		wLoc = getLocation().getAdjacentLocation(Location.WEST);
-		sLoc = getLocation().getAdjacentLocation(Location.SOUTH);
+		Location nLoc = getLocation().getAdjacentLocation(Location.NORTH);
+		Location eLoc = getLocation().getAdjacentLocation(Location.EAST);
+		Location wLoc = getLocation().getAdjacentLocation(Location.WEST);
+		Location sLoc = getLocation().getAdjacentLocation(Location.SOUTH);
 		
 		for (int n = 0; n < bombPower; n++)
 		{
@@ -41,7 +41,7 @@ public class Bomb extends Rock implements Destructable
 		
 		for (Location loc : LocsInRange)
 		{
-			loc.getActor().destruct() //make it so that if instance of BLock, destruct, and then removeself from grid, also if there is a player in the range
+			getGrid().get(loc).destruct(); //make it so that if instance of BLock, destruct, and then removeself from grid, also if there is a player in the range
 		}
 	}
 	
