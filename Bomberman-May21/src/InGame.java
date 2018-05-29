@@ -10,46 +10,47 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-public class InGame<E> extends JFrame implements ActionListener
+public class InGame<E> extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JButton startButton, howToPlayButton, quitButton;
-	private JPanel inGame;
-	private JLabel[][] grid;
+	private JLabel unbreakable, player1, player2, blank;
 	private Actor[][] actors;
 	
 	public InGame()
 	{
-		super("Bomberman");
+		super(new GridLayout(11, 15));
 		setSize(1280, 720);
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationByPlatform(true);
+		setOpaque(true);
+		setBackground(Color.WHITE);
+        setLayout(null);
+		unbreakable = new JLabel("||");
+		player1 = new JLabel("1");
+		player2 = new JLabel("2");
+		blank = new JLabel(" ");
+		addToGrid();
 		
-		inGame = new JPanel(new BorderLayout());
-		actors = new Actor[11][15];
-		
-		for (int num = 0; num < 15; num++)
-		{
-			actors[0][num] = new Block(false);
-		}
-		
-		grid = new JLabel[11][15];
-		
-		for (int row = 0; row < 11; row++)
-		{
-			for (int col = 0; col < 15; col++)
-			{
-				if (actors[row][col] instanceof Block)
-				{
-					grid[row][col] = new JLabel("|||");
-				}
-			}
-		}
-		inGame.add(grid, BorderLayout.CENTER);
-		
-		setContentPane(inGame);
 		setVisible(true);
+	}
+	
+	public void addToGrid()
+	{
+		for (int num = 0; num < 16; num++)
+		{
+			add(unbreakable);
+		}
+		
+		add(player1);
+		
+		for (int num = 0; num < 13; num++)
+		{
+			add(blank);
+		}
+		
+		add(unbreakable);
+		
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent event)
