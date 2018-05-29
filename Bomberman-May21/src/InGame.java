@@ -13,6 +13,7 @@ public class InGame extends JPanel implements ActionListener
 	private Actor[][] actors;
 	private Block noBreak;
 	private Bomber bomber1, bomber2;
+	private Image ui;
 	
 	public InGame()
 	{
@@ -21,6 +22,9 @@ public class InGame extends JPanel implements ActionListener
 		setOpaque(true);
 		setBackground(Color.WHITE);
         setLayout(null);
+        
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        ui = toolkit.getImage("ingame.png");
         
 		unbreakable = new JLabel("||");
 		unbreakable.setForeground(Color.BLACK);
@@ -91,6 +95,12 @@ public class InGame extends JPanel implements ActionListener
 		}
 	}
 	
+	public void paint(Graphics g)
+	{
+		super.paint(g);
+		g.drawImage(ui, 0, 0, this);
+	}
+	
 	public void actionPerformed(ActionEvent event)
 	{
 		
@@ -98,7 +108,7 @@ public class InGame extends JPanel implements ActionListener
 	
 	public static void main(String[] args)
 	{
-		JFrame screen = new JFrame();
+		JFrame screen = new JFrame("Bomberman");
 		screen.setSize(1280, 720);
 		screen.setResizable(false);
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
