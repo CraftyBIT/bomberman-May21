@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.event.*;
 
 public class InGame extends JPanel implements ActionListener
 {
@@ -22,8 +23,11 @@ public class InGame extends JPanel implements ActionListener
         setLayout(null);
         
 		unbreakable = new JLabel("||");
+		unbreakable.setForeground(Color.BLACK);
 		player1 = new JLabel("1");
+		player1.setForeground(Color.BLACK);
 		player2 = new JLabel("2");
+		player2.setForeground(Color.BLACK);
 		blank = new JLabel(" ");
 		
 		actors = new Actor[11][15];
@@ -95,8 +99,14 @@ public class InGame extends JPanel implements ActionListener
 	public static void main(String[] args)
 	{
 		JFrame screen = new JFrame();
-		InGame game = new InGame();
+		screen.setSize(1280, 720);
+		screen.setResizable(false);
+		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		screen.setLocationByPlatform(true);
+		
+		JPanel game = new InGame();
 		screen.setContentPane(game);
+		screen.setVisible(true);
 	}
 }
 

@@ -19,7 +19,6 @@ public class MainMenu extends JPanel implements ActionListener
 	
 	public MainMenu()
 	{
-		
 		startButton = new JButton("Start!");
 		startButton.addActionListener(this);
 		howToPlayButton = new JButton("How to Play");
@@ -28,11 +27,6 @@ public class MainMenu extends JPanel implements ActionListener
 		quitButton.addActionListener(this);
 		this.add(startButton,0);
 		this.add(howToPlayButton,1);
-		
-		
-		
-		
-		
 	}
 	
 	public void paint(Graphics g){
@@ -46,21 +40,22 @@ public class MainMenu extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent event)
 	{
-		if (event.getSource() == startButton){
+		if (event.getSource() == startButton)
+		{
 			screen.remove(menu);
 			screen.add(game);
-			
 		}
-		if (event.getSource() == howToPlayButton){
-			
-			
+		if (event.getSource() == howToPlayButton)
+		{
 			//open instructions
 		}
-		if (event.getSource() == quitButton){
+		if (event.getSource() == quitButton)
+		{
 			
 		}
 		
 	}
+	
 	public static void main(String[] args){
 		screen = new JFrame();
 		menu = new MainMenu();
@@ -73,10 +68,4 @@ public class MainMenu extends JPanel implements ActionListener
 		screen.add(menu);
 		
 	}
-	
-	
-	
-
-		
-	
 }
