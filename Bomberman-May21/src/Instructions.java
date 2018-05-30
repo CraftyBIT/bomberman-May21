@@ -15,7 +15,7 @@ public class Instructions extends JFrame implements ActionListener
 	
 	public Instructions()
 	{
-		super("Bomberbitch");
+		super("Bomberman");
 		setSize(400,400);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,7 +23,7 @@ public class Instructions extends JFrame implements ActionListener
 		
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
-		instructions = new JTextArea ("Bomb the shit out of each other like the bitches you are!");
+		instructions = new JTextArea ("Bomb each other");
 
 		
 		this.setLayout(new BorderLayout());
