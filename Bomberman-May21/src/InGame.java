@@ -41,9 +41,9 @@ public class InGame extends JFrame implements ActionListener
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         
-        //Toolkit toolkit = Toolkit.getDefaultToolkit();
-        //ui = toolkit.getImage("ingame.png");
-        
+        bomb = imageLoader.getBombImage().getImage();
+        breakable = imageLoader.getBreakableImage().getImage();
+        stoneTile = imageLoader.getStoneTileImage().getImage();
         unbreakable = imageLoader.getUnbreakableImage().getImage();
         
         inGame = new JPanel();
@@ -62,7 +62,27 @@ public class InGame extends JFrame implements ActionListener
     public void paint(Graphics g)
     {
         super.paint(g);
+        
+        int rLength = map[0].length;
+        int cLength = map.length;
+        
+        for (int row = 0; row < rLength; row++)
+        {
+        	for (int col = 0; col < cLength; col++)
+        	{
+        		
+        	}
+        }
+        
+        
+        // pair of nested loops going thru 'map'
+        // 2 variables x, y
+        // if map[i][j] is STONETILE, 
         g.drawImage(unbreakable, 0, 24, null);
+        g.drawImage(unbreakable, 0, 88, null);
+        g.drawImage(unbreakable, 64, 24, null);
+        g.drawImage(stoneTile, 64, 88, null);
+        g.drawImage(bomb, 64, 88, null);
     }
     
     public void actionPerformed(ActionEvent event)
