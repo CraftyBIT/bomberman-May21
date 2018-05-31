@@ -14,7 +14,7 @@ public class InGame extends JFrame implements ActionListener
     private JPanel inGame;
     private int[][] map;
     //private Image ui;
-    private Image unbreakable;
+    private Image unbreakable, bomb, breakable, stoneTile;
     private Bomber p1, p2;
     
    
