@@ -2,35 +2,25 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-
-public class ImageLoader 
+public class ImageLoader
 {
-	private ImageIcon breakable, unbreakable, stoneTile, bomb;
+	private ImageIcon bomb, breakable, stoneTile, unbreakable;
 	
-	public ImageLoader() 
+	public ImageLoader()
 	{
 		ClassLoader cldr = this.getClass().getClassLoader();
 		
-		try 
+		try
 		{
-			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
-			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
 			bomb = new ImageIcon(cldr.getResource("images/bomb.png"));
 			breakable = new ImageIcon(cldr.getResource("images/breakable.png"));
-			
-		} catch (Exception e) {
+			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
+			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
-	}
-	
-	public ImageIcon getUnbreakableImage()
-	{
-		return unbreakable;
-	}
-	
-	public ImageIcon getStoneTileImage()
-	{
-		return stoneTile;
 	}
 	
 	public ImageIcon getBombImage()
@@ -41,5 +31,15 @@ public class ImageLoader
 	public ImageIcon getBreakableImage()
 	{
 		return breakable;
+	}
+
+	public ImageIcon getStoneTileImage()
+	{
+		return stoneTile;
+	}
+	
+	public ImageIcon getUnbreakableImage()
+	{
+		return unbreakable;
 	}
 }
