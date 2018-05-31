@@ -39,6 +39,8 @@ public class Bomb extends Rock
 			sLoc = sLoc.getAdjacentLocation(Location.SOUTH);
 		}
 		
+		removeSelfFromGrid();
+		
 		for (Location loc : LocsInRange)
 		{
 			getGrid().get(loc).destruct(); //make it so that if instance of BLock, destruct, and then removeself from grid, also if there is a player in the range
