@@ -11,9 +11,13 @@ public class Bomber extends Actor
 
 	private int myPower; // Strength of Bombs placed by this Actor (Explosion Radius)
 	
-	public Bomber(){
+	private boolean bombPlaced;
+	private Location loc;
+	
+	public Bomber(int r, int c){
 		myBombs = 3; //start with 3 bombs
 		myPower = 2; //start with 2 power
+		loc = new Location (r, c);
 	}
 	
 	int getBombs(){
@@ -39,6 +43,12 @@ public class Bomber extends Actor
 	void addPower(int num){
 		myPower+=num;
 	}
+	
+	boolean bombDown(){
+		return bombPlaced;
+	}
+	
+	
 
 
 }

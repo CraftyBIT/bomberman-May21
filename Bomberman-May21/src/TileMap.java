@@ -9,8 +9,8 @@ import java.net.URL;		// added for JAR file access
 
 public class TileMap {
 	public int[][] textMap;
-	public static final int mapWidth = 4, mapHeight = 4;
-	private static int tileSize = 64;
+	public static final int mapWidth = 23, mapHeight = 7;
+	private static int tileSize = 128;
 	Image unbreakable, stonetile;
 	
 	public TileMap(String map) {
