@@ -3,44 +3,43 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 
 
-public class ImageLoader {
-	private ImageIcon unbreakable, stoneTile, unbreakable2, bomb;
+public class ImageLoader 
+{
+	private ImageIcon breakable, unbreakable, stoneTile, bomb;
 	
-	public ImageLoader() {
+	public ImageLoader() 
+	{
 		ClassLoader cldr = this.getClass().getClassLoader();
 		
-		try {
-			URL unbreakableURL = cldr.getResource("images/unbreakable.png");
-			unbreakable = new ImageIcon(unbreakableURL);
+		try 
+		{
+			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
+			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
+			bomb = new ImageIcon(cldr.getResource("images/bomb.png"));
+			breakable = new ImageIcon(cldr.getResource("images/breakable.png"));
 			
-			URL stoneTileURL = cldr.getResource("images/stonetile.png");
-			stoneTile = new ImageIcon(stoneTileURL);
-			
-			URL unbreakable2URL = cldr.getResource("images/unbreakable_block2.png");
-			unbreakable2 = new ImageIcon(unbreakable2URL);
-			
-			URL bombURL = cldr.getResource("images/bomb.png");
-			bomb = new ImageIcon(bombURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public ImageIcon getUnbreakableImage() {
+	public ImageIcon getUnbreakableImage()
+	{
 		return unbreakable;
 	}
 	
-	public ImageIcon getStoneTileImage() {
-		return stoneTile;
-	}
-	
-	public ImageIcon getUnbreakable2Image()
+	public ImageIcon getStoneTileImage()
 	{
-		return unbreakable2;
+		return stoneTile;
 	}
 	
 	public ImageIcon getBombImage()
 	{
 		return bomb;
+	}
+	
+	public ImageIcon getBreakableImage()
+	{
+		return breakable;
 	}
 }
