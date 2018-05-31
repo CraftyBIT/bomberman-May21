@@ -29,7 +29,7 @@ import java.awt.Color;
 public class Actor
 {
     private Grid<Actor> grid;
-    private Location location;
+    protected Location location;
     private int direction;
     private Color color;
 
@@ -38,51 +38,13 @@ public class Actor
      */
     public Actor()
     {
-        color = Color.BLUE;
-        direction = Location.NORTH;
-        grid = null;
-        location = null;
+        
     }
 
-    /**
-     * Gets the color of this actor.
-     * @return the color of this actor
-     */
-    public Color getColor()
-    {
-        return color;
-    }
+   
+    
 
-    /**
-     * Sets the color of this actor.
-     * @param newColor the new color
-     */
-    public void setColor(Color newColor)
-    {
-        color = newColor;
-    }
-
-    /**
-     * Gets the current direction of this actor.
-     * @return the direction of this actor, an angle between 0 and 359 degrees
-     */
-    public int getDirection()
-    {
-        return direction;
-    }
-
-    /**
-     * Sets the current direction of this actor.
-     * @param newDirection the new direction. The direction of this actor is set
-     * to the angle between 0 and 359 degrees that is equivalent to
-     * <code>newDirection</code>.
-     */
-    public void setDirection(int newDirection)
-    {
-        direction = newDirection % Location.FULL_CIRCLE;
-        if (direction < 0)
-            direction += Location.FULL_CIRCLE;
-    }
+    
 
     /**
      * Gets the grid in which this actor is located.

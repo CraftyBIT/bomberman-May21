@@ -1,4 +1,5 @@
 import info.gridworld.actor.*;
+import info.gridworld.grid.Location;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,7 +13,8 @@ import java.net.URL;
 public class InGame extends JFrame implements ActionListener
 {
     private JPanel inGame;
-    private int[][] map;
+    private int[][] intMap;
+    private Actor[][] map;
     //private Image ui;
     private Image unbreakable, bomb, breakable, stoneTile;
     private Bomber p1, p2;
@@ -35,7 +37,26 @@ public class InGame extends JFrame implements ActionListener
     	super("Bomberman");
     	ImageLoader imageLoader = new ImageLoader();
     	TileMap tileMap = new TileMap("maps/map.txt");
-    	map = tileMap.getMap();
+    	intMap = tileMap.getMap();
+    	map = new Actor[intMap.length][intMap[0].length];
+    	int row = 0, col = 0;
+    	for (int[] r : intMap){
+    		for (int c: r){
+    			switch (c){
+    			case 1: Bomber p1 = new Bomber(row, col);
+    					map[row][col] = p1;
+    			case 2: Bomber p2 = new Bomber(row, col);
+					    map[row][col] = p2;
+    			case 3: Block u = new Block(false);
+    					map[row][col] = u;
+    			case 4: Block b = new Block(true);
+    					map[row][col] = b;
+    			}
+    			
+    			col++;
+    		}
+    		row++;
+    	}
         setSize(1280, 744);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,8 +117,9 @@ public class InGame extends JFrame implements ActionListener
 			if(p1.getLocation().getCol() != map[1].length && map[p1.getLocation().getRow()][p1.getLocation().getCol()] == 0){
 				map[p1.getLocation().getRow()][p1.getLocation().getCol() + 1] = 1;
 				if (p1.bombDown()){
-					setBomb();
+					setBomb(p1.getLocation());
 				}
+				Location newLoc = new Location (p1.getLocation()c.getRow(), p1.getLocation().getCol() + 1);
 				p1.moveTo(newLoc);
 			}
 			repaint();
@@ -120,8 +142,9 @@ public class InGame extends JFrame implements ActionListener
 			if (fishX < 0 )  fishX = 570;
 	}
 	
-	public void setBomb(){
-		
+	public void setBomb(Location loc){
+		map[loc.getRow()][loc.getCol()] = 5;
+		Bomb b = new Bomb(loc, 3);
 	}
 	
 }
