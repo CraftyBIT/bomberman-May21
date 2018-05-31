@@ -14,37 +14,45 @@ public class Bomber extends Actor
 	private boolean bombPlaced;
 	private Location loc;
 	
-	public Bomber(int r, int c){
-		myBombs = 3; //start with 3 bombs
-		myPower = 2; //start with 2 power
+	public Bomber(int r, int c)
+	{
+		myBombs = 1; //start with 3 bombs
+		myPower = 1; //start with 2 power
 		loc = new Location (r, c);
 	}
 	
-	int getBombs(){
+	int getBombs()
+	{
 		return myBombs;
 	}
 	
-	int getPower(){
+	int getPower()
+	{
 		return myPower;
 	}
 	
-	void addBombs(){
+	void addBombs()
+	{
 		myBombs++;
 	}
 	
-	void addBombs(int num){
+	void addBombs(int num)
+	{
 		myBombs+=num;
 	}
 	
-	void addPower(){
+	void addPower()
+	{
 		myPower++;
 	}
 	
-	void addPower(int num){
+	void addPower(int num)
+	{
 		myPower+=num;
 	}
 	
-	boolean bombDown(){
+	boolean bombDown()
+	{
 		return bombPlaced;
 	}
 	

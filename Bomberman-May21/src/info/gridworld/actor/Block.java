@@ -42,7 +42,6 @@ public class Block extends Rock
       			pu.putSelfInGrid(g, currentLoc);	
       			return;
    		}
-    
    		 removeSelfFromGrid();
   	}
 }
