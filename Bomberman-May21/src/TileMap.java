@@ -10,16 +10,19 @@ import java.net.URL;		// added for JAR file access
 public class TileMap {
 	public int[][] textMap;
 	public static final int mapWidth = 23, mapHeight = 7;
-	private static int tileSize = 128;
-	Image unbreakable, stonetile;
+	private static int tileSize = 64;
+	Image bomb, breakable, stoneTile, unbreakable;
 	
 	public TileMap(String map) {
 		ImageLoader imageLoader = new ImageLoader();
 		ClassLoader cldr = TileMap.class.getClassLoader();
 		URL mapURL = cldr.getResource(map);
 		readFile(mapURL);
+		
+		bomb = imageLoader.getBombImage().getImage();
+		breakable = imageLoader.getBreakableImage().getImage();
+		stoneTile = imageLoader.getStoneTileImage().getImage();
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
-		stonetile = imageLoader.getStoneTileImage().getImage();
 	}
 	
 	public int[][] getMap() {
