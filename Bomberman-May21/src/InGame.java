@@ -6,46 +6,57 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class InGame extends JPanel implements ActionListener
-{
-	private static final long serialVersionUID = 1L;
-	private Image ui;
-	
-	public InGame()
-	{
-		super(new GridLayout(11, 15));
-		setSize(1280, 720);
-		setOpaque(true);
-		setBackground(Color.WHITE);
-        
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        ui = toolkit.getImage("ingame.png");
-		
-		setVisible(true);
-	}
-	
-	public void paint(Graphics g)
-	{
-		super.paint(g);
-		g.drawImage(ui, 0, 0, this);
-	}
-	
-	public void actionPerformed(ActionEvent event)
-	{
-		
-	}
-	
-	public static void main(String[] args)
-	{
-		JFrame screen = new JFrame("Bomberman");
-		screen.setSize(1280, 720);
-		screen.setResizable(false);
-		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		screen.setLocationByPlatform(true);
-		
-		JPanel game = new InGame();
-		screen.add(game);
-		screen.setVisible(true);
-	}
-}
+import java.io.*;
 
+import java.net.URL;
+
+public class InGame extends JFrame implements ActionListener
+{
+    private JPanel inGame;
+    private int[][] map;
+    //private Image ui;
+    private Image unbreakable;
+    
+    public static void main(String[] args)
+    {
+        InGame game = new InGame();
+        
+    }
+    
+    public InGame()
+    {
+    	
+    	super("Bomberman");
+    	ImageLoader imageLoader = new ImageLoader();
+    	TileMap tileMap = new TileMap("maps/map.txt");
+    	map = tileMap.getMap();
+        setSize(1280, 744);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        
+        //Toolkit toolkit = Toolkit.getDefaultToolkit();
+        //ui = toolkit.getImage("ingame.png");
+        
+        unbreakable = imageLoader.getUnbreakableImage().getImage();
+        
+        inGame = new JPanel();
+        inGame.setOpaque(true);
+        inGame.setBackground(Color.WHITE);
+        inGame.setLayout(null);
+        
+        setContentPane(inGame);
+        setVisible(true);
+    }
+    
+    public void paint(Graphics g)
+    {
+        super.paint(g);
+        g.drawImage(unbreakable, 0, 24, null);
+    }
+    
+    public void actionPerformed(ActionEvent event)
+    {
+        
+    }
+}
