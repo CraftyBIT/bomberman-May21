@@ -10,12 +10,12 @@ public class Bomb extends Rock
 {
 	
 	private int bombPower;
-	private ArrayList<Location> LocsInRange;
+
 	
 	
-	public Bomb(int r, int c, int power){
+	public Bomb(Location loc, int power){
 		bombPower = power; //number of tiles that the bomb hits in each Direction (N, S, E, W)
-		;
+		super.moveTo(loc);
 
 	}
 	
