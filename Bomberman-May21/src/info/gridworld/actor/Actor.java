@@ -42,7 +42,10 @@ public class Actor
     }
 
    
-    
+    public boolean isBreakable()
+    {
+    	return false;
+    }
 
     
 

@@ -15,15 +15,12 @@ public class InGame extends JFrame implements ActionListener
     private JPanel inGame;
     private int[][] intMap;
     private Actor[][] map;
-    //private Image ui;
     private Image unbreakable, bomb, breakable, stoneTile;
     private Bomber p1, p2;
     
-   
-    
-    
+    public static final int pixels = 64;
+
     // empty = 0, player 1 = 1, player 2 = 2, unbreakable = 3, breakable = 4, bomb = 5
-    
     
     public static void main(String[] args)
     {
@@ -36,27 +33,10 @@ public class InGame extends JFrame implements ActionListener
     	
     	super("Bomberman");
     	ImageLoader imageLoader = new ImageLoader();
-    	TileMap tileMap = new TileMap("maps/map.txt");
-    	intMap = tileMap.getMap();
-    	map = new Actor[intMap.length][intMap[0].length];
-    	int row = 0, col = 0;
-    	for (int[] r : intMap){
-    		for (int c: r){
-    			switch (c){
-    			case 1: Bomber p1 = new Bomber(row, col);
-    					map[row][col] = p1;
-    			case 2: Bomber p2 = new Bomber(row, col);
-					    map[row][col] = p2;
-    			case 3: Block u = new Block(false);
-    					map[row][col] = u;
-    			case 4: Block b = new Block(true);
-    					map[row][col] = b;
-    			}
-    			
-    			col++;
-    		}
-    		row++;
-    	}
+    	Map mapReader = new Map("maps/map.txt");
+    	map = mapReader.getMap();
+    	
+    	
         setSize(1280, 744);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,12 +67,28 @@ public class InGame extends JFrame implements ActionListener
         int rLength = map[0].length;
         int cLength = map.length;
         
+        int xPixel = 0;
+        int yPixel = 24;
+        
         for (int row = 0; row < rLength; row++)
         {
         	for (int col = 0; col < cLength; col++)
         	{
-        		
+        		if (map[row][col] instanceof Block)
+        		{
+        			if (map[row][col].isBreakable() == false)
+        			{
+        				g.drawImage(unbreakable, xPixel, yPixel, null);
+        			}
+        			else
+        			{
+        				g.drawImage(breakable, xPixel, yPixel, null);
+        			}
+        			xPixel += 64;
+        		}
         	}
+        	xPixel = 0;
+        	yPixel += 64;
         }
         
         
