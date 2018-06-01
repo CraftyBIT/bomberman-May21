@@ -29,7 +29,7 @@ import java.awt.Color;
 public class Actor
 {
     private Grid<Actor> grid;
-    protected Location location;
+    private Location location;
     private int direction;
     private Color color;
 
@@ -38,16 +38,56 @@ public class Actor
      */
     public Actor()
     {
-        
+        color = Color.BLUE;
+        direction = Location.NORTH;
+        grid = null;
+        location = null;
     }
 
-   
-    public boolean isBreakable()
-    {
+    /**
+     * Gets the color of this actor.
+     * @return the color of this actor
+     */
+    
+    public boolean isBreakable(){
     	return false;
     }
-
     
+    public Color getColor()
+    {
+        return color;
+    }
+
+    /**
+     * Sets the color of this actor.
+     * @param newColor the new color
+     */
+    public void setColor(Color newColor)
+    {
+        color = newColor;
+    }
+
+    /**
+     * Gets the current direction of this actor.
+     * @return the direction of this actor, an angle between 0 and 359 degrees
+     */
+    public int getDirection()
+    {
+        return direction;
+    }
+
+    /**
+     * Sets the current direction of this actor.
+     * @param newDirection the new direction. The direction of this actor is set
+     * to the angle between 0 and 359 degrees that is equivalent to
+     * <code>newDirection</code>.
+     */
+    public void setDirection(int newDirection)
+    {
+        direction = newDirection % Location.FULL_CIRCLE;
+        if (direction < 0)
+            direction += Location.FULL_CIRCLE;
+    }
 
     /**
      * Gets the grid in which this actor is located.
@@ -77,8 +117,17 @@ public class Actor
      * @param gr the grid into which this actor should be placed
      * @param loc the location into which the actor should be placed
      */
-    public void putSelfInGrid(Location loc)
-    { 
+    public void putSelfInGrid(Grid<Actor> gr, Location loc)
+    {
+        if (grid != null)
+            throw new IllegalStateException(
+                    "This actor is already contained in a grid.");
+
+        Actor actor = gr.get(loc);
+        if (actor != null)
+            actor.removeSelfFromGrid();
+        gr.put(loc, this);
+        grid = gr;
         location = loc;
     }
 
@@ -139,9 +188,6 @@ public class Actor
     {
         setDirection(getDirection() + Location.HALF_CIRCLE);
     }
-    
-    public void destruct()  //VERY IMPORTANT METHOD; OVERRIDEN BY SUBLASSES TO DO FUNCTION WHEN HIT BY BOMB
-    {}
 
     /**
      * Creates a string that describes this actor.
