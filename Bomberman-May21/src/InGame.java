@@ -110,7 +110,7 @@ public class InGame extends JFrame implements ActionListener
 	public void keyPressed(KeyEvent e) {  
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			//System.out.println("Right key typed");
-			if(p1.getLocation().getCol() != map[1].length && map[p1.getLocation().getRow()][p1.getLocation().getCol()] == 0){
+			if(p1.getLocation().getCol() != map[1].length && map[p1.getLocation().getRow()][p1.getLocation().getCol()] instanceof null){
 				map[p1.getLocation().getRow()][p1.getLocation().getCol() + 1] = 1;
 				if (p1.bombDown()){
 					setBomb(p1.getLocation());

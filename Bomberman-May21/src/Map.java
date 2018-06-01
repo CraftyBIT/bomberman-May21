@@ -11,14 +11,16 @@ import javax.swing.*;       // access to JFrame and JComponents
 
 import java.net.URL;		// added for JAR file access
 
-public class Map {
+public class Map 
+{
 	public int[][] intMap;
-	public static final int mapWidth = 23, mapHeight = 7;
+	public static final int mapWidth = 15, mapHeight = 11;
 	private static int tileSize = 64;
 	Image bomb, breakable, stoneTile, unbreakable;
 	public Actor[][] actorMap;
 	
-	public Map(String map) {
+	public Map(String map) 
+	{
 		ImageLoader imageLoader = new ImageLoader();
 		ClassLoader cldr = Map.class.getClassLoader();
 		URL mapURL = cldr.getResource(map);
@@ -30,7 +32,8 @@ public class Map {
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
 	}
 	
-	public Actor[][] getMap() {
+	public Actor[][] getMap() 
+	{
 		return actorMap;
 	}
 	
@@ -50,10 +53,13 @@ public class Map {
 			}
 			file.close();
 		}
-		catch  (Exception e){
+		catch  (Exception e)
+		{
 	    	System.out.println("IO Exception: " + e);
 	    }
+		
 		int row = 0, col = 0;
+		
 		for (int[] r : intMap){
     		for (int c: r){
     			switch (c){
@@ -66,16 +72,14 @@ public class Map {
     			case 4: Block b = new Block(true);
     					actorMap[row][col] = b;
     			}
-    			
     			col++;
     		}
     		row++;
     	}
 	}
 	
-	public void draw() {
+	public void draw()
+	{
 		
 	}
-	
-	
 }
