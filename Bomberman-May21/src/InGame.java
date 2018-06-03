@@ -1,5 +1,4 @@
-import info.gridworld.actor.*;
-import info.gridworld.grid.Location;
+// Project Bomberman
 
 import java.awt.*;
 import java.awt.event.*;
@@ -7,140 +6,201 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-import java.io.*;
-import java.net.URL;
-
 public class InGame extends JFrame implements ActionListener
 {
-    private JPanel inGame;
-    private int[][] intMap;
-    private Actor[][] map;
-    private Image unbreakable, bomb, breakable, stoneTile;
-    private Bomber p1, p2;
-    
-    public static final int pixels = 64;
-
-    // empty = 0, player 1 = 1, player 2 = 2, unbreakable = 3, breakable = 4, bomb = 5
-    
-    public static void main(String[] args)
-    {
-        InGame game = new InGame();
-        
-    }
-    
-    public InGame()
-    {
-    	
-    	super("Bomberman");
-    	ImageLoader imageLoader = new ImageLoader();
-    	Map mapReader = new Map("maps/map.txt");
-    	map = mapReader.getMap();
-    	
-    	
-        setSize(1280, 744);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
-        
-        bomb = imageLoader.getBombImage().getImage();
-        breakable = imageLoader.getBreakableImage().getImage();
-        stoneTile = imageLoader.getStoneTileImage().getImage();
-        unbreakable = imageLoader.getUnbreakableImage().getImage();
-        
-        inGame = new JPanel();
-        inGame.setOpaque(true);
-        inGame.setBackground(Color.WHITE);
-        inGame.setLayout(null);
-        
-        setContentPane(inGame);
-        setVisible(true);
-        
-        p1 = new Bomber(1, 1); //initialize players at locations
-        p2 = new Bomber(5, 21);
-        
-    }
-    
-    public void paint(Graphics g)
-    {
-        super.paint(g);
-        
-        int rLength = map[0].length;
-        int cLength = map.length;
-        
-        int xPixel = 0;
-        int yPixel = 24;
-        
-        for (int row = 0; row < rLength; row++)
+	private JLayeredPane layered;
+	private JPanel bombers, iGame;
+	private JButton startButton;
+	private Actor[][] map;
+	private Image bomb, bomber, bomber2, breakable, stoneTile, unbreakable, dbImage;
+	private Graphics dbGraphics;
+	private int xPixel = 2, yPixel = 30;
+	private boolean gameOver = true;
+	private Map mapReader;
+	
+	public Action actionTime;
+	
+	public static final int rLength = 11, cLength = 15, resolution = 64;
+	
+	public static void main(String[] args)
+	{
+		InGame inGame = new InGame();
+	}
+	
+	public InGame()
+	{
+		super("Bomberman");
+		ImageLoader imageLoader = new ImageLoader();
+		mapReader = new Map("map.txt");
+		map = mapReader.getMap();
+		
+		setSize(966, 792);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationByPlatform(true);
+		
+		bomb = imageLoader.getBombImage().getImage();
+		bomber = imageLoader.getBomberImage().getImage();
+		bomber2 = imageLoader.getBomberImage2().getImage();
+		breakable = imageLoader.getBreakableImage().getImage();
+		stoneTile = imageLoader.getStoneTileImage().getImage();
+		unbreakable = imageLoader.getUnbreakableImage().getImage();
+		
+		addKeyListener(new KeyHandler());
+		
+		layered = new JLayeredPane();
+		
+		iGame = new JPanel();
+		iGame.setOpaque(true);
+		iGame.setBackground(Color.WHITE);
+		iGame.setLayout(null);
+		iGame.setSize(966, 792);
+		
+		startButton = new JButton("Start");
+		startButton.setSize(966, 50);
+		startButton.setLocation(0, 704);
+		startButton.addActionListener(this);
+		
+		iGame.add(startButton);
+		layered.add(iGame);
+		
+		bombers = new JPanel();
+		bombers.setOpaque(false);
+		bombers.setBackground(Color.WHITE);
+		bombers.setLayout(null);
+		bombers.setSize(966, 792);
+		layered.add(bombers);
+		
+		setContentPane(layered);
+		setVisible(true);
+	}
+	
+	public void paint(Graphics g)
+	{
+		dbImage = createImage(getWidth(), getHeight());
+		dbGraphics = dbImage.getGraphics();
+		paintComponent(dbGraphics);
+		g.drawImage(dbImage, 0, 0, iGame);
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paint(g);
+		boolean isPlayer1 = true;
+		
+		for (int row = 0; row < rLength; row++)
         {
         	for (int col = 0; col < cLength; col++)
         	{
-        		if (map[row][col] instanceof Block)
+        		if (map[row][col] instanceof UnbreakableBlock)
         		{
-        			if (map[row][col].isBreakable() == false)
-        			{
-        				g.drawImage(unbreakable, xPixel, yPixel, null);
-        			}
-        			else
-        			{
-        				g.drawImage(breakable, xPixel, yPixel, null);
-        			}
-        			xPixel += 64;
+        			g.drawImage(unbreakable, xPixel, yPixel, iGame);
         		}
+        		else if (map[row][col] instanceof BreakableBlock)
+        		{
+        			g.drawImage(breakable, xPixel, yPixel, iGame);
+        		}
+        		else
+        		{
+        			g.drawImage(stoneTile, xPixel, yPixel, null);
+        			if (map[row][col] instanceof Bomber && isPlayer1)
+        			{
+        				g.drawImage(bomber, xPixel, yPixel, bombers);
+        				isPlayer1 = false;
+        			}
+        			else if (map[row][col] instanceof Bomber && !isPlayer1)
+        			{
+        				g.drawImage(bomber2, xPixel, yPixel, bombers);
+        			}
+        		}
+        		xPixel += 64;
         	}
-        	xPixel = 0;
+        	xPixel = 2;
         	yPixel += 64;
         }
-        
-        
-        // pair of nested loops going thru 'map'
-        // 2 variables x, y
-        // if map[i][j] is STONETILE, 
-        g.drawImage(unbreakable, 0, 24, null);
-        g.drawImage(unbreakable, 0, 88, null);
-        g.drawImage(unbreakable, 64, 24, null);
-        g.drawImage(stoneTile, 64, 88, null);
-        g.drawImage(bomb, 64, 88, null);
-    }
-    
-    public void actionPerformed(ActionEvent event)
-    {
-        
-    }
-
-	public void keyPressed(KeyEvent e) {  
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			//System.out.println("Right key typed");
-			if(p1.getLocation().getCol() != map[1].length && map[p1.getLocation().getRow()][p1.getLocation().getCol()] instanceof null){
-				map[p1.getLocation().getRow()][p1.getLocation().getCol() + 1] = 1;
-				if (p1.bombDown()){
-					setBomb(p1.getLocation());
-				}
-				Location newLoc = new Location (p1.getLocation()c.getRow(), p1.getLocation().getCol() + 1);
-				p1.moveTo(newLoc);
+		xPixel = 2;
+		yPixel = 30;
+	}
+	
+	public void actionPerformed(ActionEvent event)
+	{
+		if (event.getSource() == startButton && gameOver)
+		{
+			requestFocusInWindow();
+			gameOver = false;
+		}
+		repaint();
+	}
+	
+	private class KeyHandler implements KeyListener
+	{
+		public void keyPressed(KeyEvent event)
+		{
+			if (event.getKeyCode() == KeyEvent.VK_W)
+			{
+				mapReader.player1Move('W');
+				map = mapReader.getMap();
+				repaint();
 			}
-			repaint();
-			if (fishX > 570 )  fishX = 20;
+			
+			else if (event.getKeyCode() == KeyEvent.VK_S)
+			{
+				mapReader.player1Move('S');
+				map = mapReader.getMap();
+				repaint();
+			}
+			
+			else if (event.getKeyCode() == KeyEvent.VK_A)
+			{
+				mapReader.player1Move('A');
+				map = mapReader.getMap();
+				repaint();
+			}
+			
+			else if (event.getKeyCode() == KeyEvent.VK_D)
+			{
+				mapReader.player1Move('D');
+				map = mapReader.getMap();
+				repaint();
+			}
+			
+			if (event.getKeyCode() == KeyEvent.VK_UP)
+			{
+				mapReader.player2Move('W');
+				map = mapReader.getMap();
+				repaint();
+			}
+			
+			else if (event.getKeyCode() == KeyEvent.VK_DOWN)
+			{
+				mapReader.player2Move('S');
+				map = mapReader.getMap();
+				repaint();
+			}
+			
+			else if (event.getKeyCode() == KeyEvent.VK_LEFT)
+			{
+				mapReader.player2Move('A');
+				map = mapReader.getMap();
+				repaint();
+			}
+			
+			else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
+			{
+				mapReader.player2Move('D');
+				map = mapReader.getMap();
+				repaint();
+			}
 		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			fishX -= 20;
-			repaint();
-			if (fishX < 0 )  fishX = 570;
+		
+		public void keyReleased(KeyEvent event)
+		{
+			
 		}
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			//System.out.println("Right key typed");
-			fishX += 20;
-			repaint();
-			if (fishX > 570 )  fishX = 20;
+		
+		public void keyTyped(KeyEvent event)
+		{
+			
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			fishX -= 20;
-			repaint();
-			if (fishX < 0 )  fishX = 570;
 	}
-	
-	public void setBomb(Location loc){
-		map[loc.getRow()][loc.getCol()] = 5;
-		Bomb b = new Bomb(loc, 3);
-	}
-	
 }

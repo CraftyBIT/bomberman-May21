@@ -1,85 +1,166 @@
-import info.gridworld.actor.Actor;
-import info.gridworld.actor.Block;
-import info.gridworld.actor.Bomber;
+// Project Bomberman
 
-import java.util.*;		// access to Scanner
-import java.io.*;			// access to IOException
-import java.awt.*;          // access to Container
-import java.awt.event.*;    // access to WindowAdapter, WindowEvent
+import java.net.URL;
 
-import javax.swing.*;       // access to JFrame and JComponents
+import java.util.*;
 
-import java.net.URL;		// added for JAR file access
-
-public class Map 
+public class Map
 {
-	public int[][] intMap;
-	public static final int mapWidth = 15, mapHeight = 11;
-	private static int tileSize = 64;
-	Image bomb, breakable, stoneTile, unbreakable;
-	public Actor[][] actorMap;
+	public static final int mapRows = 11, mapColumns = 15;
 	
-	public Map(String map) 
+	private int[][] intMap;
+	private Actor[][] actorMap;
+	private int rowLoc, rowLoc2, colLoc, colLoc2;
+	
+	public Map(String map)
 	{
-		ImageLoader imageLoader = new ImageLoader();
 		ClassLoader cldr = Map.class.getClassLoader();
-		URL mapURL = cldr.getResource(map);
-		readFile(mapURL);
+		readFile(cldr.getResource(map));
 		
-		bomb = imageLoader.getBombImage().getImage();
-		breakable = imageLoader.getBreakableImage().getImage();
-		stoneTile = imageLoader.getStoneTileImage().getImage();
-		unbreakable = imageLoader.getUnbreakableImage().getImage();
+		rowLoc = actorMap[1][1].getRow();
+		colLoc = actorMap[1][1].getColumn();
+		
+		rowLoc2 = actorMap[9][13].getRow();
+		colLoc2 = actorMap[9][13].getColumn();
 	}
 	
-	public Actor[][] getMap() 
+	public void player1Move(char ch)
+	{
+		if (ch == 'W')
+		{
+			if (actorMap[rowLoc - 1][colLoc] instanceof UnbreakableBlock == false && actorMap[rowLoc - 1][colLoc] instanceof BreakableBlock == false && actorMap[rowLoc - 1][colLoc] instanceof Bomb == false && actorMap[rowLoc - 1][colLoc] instanceof Bomber == false)
+			{
+				actorMap[rowLoc - 1][colLoc] = actorMap[rowLoc][colLoc];
+				actorMap[rowLoc][colLoc] = null;
+				rowLoc--;
+			}
+		}
+		
+		if (ch == 'S')
+		{
+			if (actorMap[rowLoc + 1][colLoc] instanceof UnbreakableBlock == false && actorMap[rowLoc + 1][colLoc] instanceof BreakableBlock == false && actorMap[rowLoc + 1][colLoc] instanceof Bomb == false && actorMap[rowLoc + 1][colLoc] instanceof Bomber == false)
+			{
+				actorMap[rowLoc + 1][colLoc] = actorMap[rowLoc][colLoc];
+				actorMap[rowLoc][colLoc] = null;
+				rowLoc++;
+			}
+		}
+		
+		if (ch == 'A')
+		{
+			if (actorMap[rowLoc][colLoc - 1] instanceof UnbreakableBlock == false && actorMap[rowLoc][colLoc - 1] instanceof BreakableBlock == false && actorMap[rowLoc][colLoc - 1] instanceof Bomb == false && actorMap[rowLoc][colLoc - 1] instanceof Bomber == false)
+			{
+				actorMap[rowLoc][colLoc - 1] = actorMap[rowLoc][colLoc];
+				actorMap[rowLoc][colLoc] = null;
+				colLoc--;
+			}
+		}
+		
+		if (ch == 'D')
+		{
+			if (actorMap[rowLoc][colLoc + 1] instanceof UnbreakableBlock == false && actorMap[rowLoc][colLoc + 1] instanceof BreakableBlock == false && actorMap[rowLoc][colLoc + 1] instanceof Bomb == false && actorMap[rowLoc][colLoc + 1] instanceof Bomber == false)
+			{
+				actorMap[rowLoc][colLoc + 1] = actorMap[rowLoc][colLoc];
+				actorMap[rowLoc][colLoc] = null;
+				colLoc++;
+			}
+		}
+	}
+	
+	public void player2Move(char ch)
+	{
+		if (ch == 'W')
+		{
+			if (actorMap[rowLoc2 - 1][colLoc2] instanceof UnbreakableBlock == false && actorMap[rowLoc2 - 1][colLoc2] instanceof BreakableBlock == false && actorMap[rowLoc2 - 1][colLoc2] instanceof Bomb == false && actorMap[rowLoc2 - 1][colLoc2] instanceof Bomber == false)
+			{
+				actorMap[rowLoc2 - 1][colLoc2] = actorMap[rowLoc2][colLoc2];
+				actorMap[rowLoc2][colLoc2] = null;
+				rowLoc2--;
+			}
+		}
+		
+		if (ch == 'S')
+		{
+			if (actorMap[rowLoc2 + 1][colLoc2] instanceof UnbreakableBlock == false && actorMap[rowLoc2 + 1][colLoc2] instanceof BreakableBlock == false && actorMap[rowLoc2 + 1][colLoc2] instanceof Bomb == false && actorMap[rowLoc2 + 1][colLoc2] instanceof Bomber == false)
+			{
+				actorMap[rowLoc2 + 1][colLoc2] = actorMap[rowLoc2][colLoc2];
+				actorMap[rowLoc2][colLoc2] = null;
+				rowLoc2++;
+			}
+		}
+		
+		if (ch == 'A')
+		{
+			if (actorMap[rowLoc2][colLoc2 - 1] instanceof UnbreakableBlock == false && actorMap[rowLoc2][colLoc2 - 1] instanceof BreakableBlock == false && actorMap[rowLoc2][colLoc2 - 1] instanceof Bomb == false && actorMap[rowLoc2][colLoc2 - 1] instanceof Bomber == false)
+			{
+				actorMap[rowLoc2][colLoc2 - 1] = actorMap[rowLoc2][colLoc2];
+				actorMap[rowLoc2][colLoc2] = null;
+				colLoc2--;
+			}
+		}
+		
+		if (ch == 'D')
+		{
+			if (actorMap[rowLoc2][colLoc2 + 1] instanceof UnbreakableBlock == false && actorMap[rowLoc2][colLoc2 + 1] instanceof BreakableBlock == false && actorMap[rowLoc2][colLoc2 + 1] instanceof Bomb == false && actorMap[rowLoc2][colLoc2 + 1] instanceof Bomber == false)
+			{
+				actorMap[rowLoc2][colLoc2 + 1] = actorMap[rowLoc2][colLoc2];
+				actorMap[rowLoc2][colLoc2] = null;
+				colLoc2++;
+			}
+		}
+	}
+	
+	public Actor[][] getMap()
 	{
 		return actorMap;
 	}
 	
-	public void readFile(URL resource)
+	public void readFile(URL mapURL)
 	{
-		intMap = new int[mapWidth][mapHeight];
-
+		intMap = new int[mapRows][mapColumns];
+		
 		try
 		{
-			Scanner file = new Scanner(resource.openStream());			
-			for (int i = 0; i < mapWidth; i++)
+			Scanner file = new Scanner(mapURL.openStream());			
+			for (int row = 0; row < mapRows; row++)
 			{
-				for (int j = 0; j < mapHeight; j++)
+				for (int col = 0; col < mapColumns; col++)
 				{
-					intMap[i][j] = file.nextInt();
+					intMap[row][col] = file.nextInt();
 				}
 			}
 			file.close();
 		}
-		catch  (Exception e)
+		catch (Exception e)
 		{
-	    	System.out.println("IO Exception: " + e);
-	    }
+			System.out.println("IO Exception: " + e);
+		}
 		
-		int row = 0, col = 0;
+		actorMap = new Actor[mapRows][mapColumns];
 		
-		for (int[] r : intMap){
-    		for (int c: r){
-    			switch (c){
-    			case 1: Bomber p1 = new Bomber(row, col);
-    					actorMap[row][col] = p1;
-    			case 2: Bomber p2 = new Bomber(row, col);
-    					actorMap[row][col] = p2;
-    			case 3: Block u = new Block(false);
-    					actorMap[row][col] = u;
-    			case 4: Block b = new Block(true);
-    					actorMap[row][col] = b;
-    			}
-    			col++;
-    		}
-    		row++;
-    	}
-	}
-	
-	public void draw()
-	{
-		
+		for (int row = 0; row < mapRows; row++)
+		{
+			for (int col = 0; col < mapColumns; col++)
+			{
+				switch (intMap[row][col])
+				{
+					case 1: Bomber player1 = new Bomber(row, col);
+							actorMap[row][col] = player1;
+							break;
+							
+					case 2: Bomber player2 = new Bomber(row, col);
+							actorMap[row][col] = player2;
+							break;
+							
+					case 3: UnbreakableBlock uBlock = new UnbreakableBlock(row, col);
+							actorMap[row][col] = uBlock;
+							break;
+							
+					case 4: BreakableBlock bBlock = new BreakableBlock(row, col);
+							actorMap[row][col] = bBlock;
+							break;
+				}
+			}
+		}
 	}
 }
