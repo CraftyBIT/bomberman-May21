@@ -12,7 +12,7 @@ public class InGame extends JFrame implements ActionListener
 	private JPanel bombers, iGame;
 	private JButton startButton;
 	private Actor[][] map;
-	private Image bomb, bomber, bomber2, breakable, stoneTile, unbreakable, dbImage;
+	private Image bomb, bomber, bomber2, breakable, stoneTile, unbreakable, smoke, dbImage;
 	private Graphics dbGraphics;
 	private int xPixel = 2, yPixel = 30;
 	private boolean gameOver = true;
@@ -45,6 +45,7 @@ public class InGame extends JFrame implements ActionListener
 		breakable = imageLoader.getBreakableImage().getImage();
 		stoneTile = imageLoader.getStoneTileImage().getImage();
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
+		smoke = imageLoader.getSmokeImage().getImage();
 		
 		addKeyListener(new KeyHandler());
 		
@@ -73,6 +74,9 @@ public class InGame extends JFrame implements ActionListener
 		
 		setContentPane(layered);
 		setVisible(true);
+		
+		Timer timer = new javax.swing.Timer(50, this);
+		timer.start();
 	}
 	
 	public void paint(Graphics g)
@@ -100,6 +104,9 @@ public class InGame extends JFrame implements ActionListener
         		{
         			g.drawImage(breakable, xPixel, yPixel, iGame);
         		}
+        		else if (map[row][col] instanceof Bomb) {
+        			g.drawImage(bomb, xPixel, yPixel, iGame);
+        		}
         		else
         		{
         			g.drawImage(stoneTile, xPixel, yPixel, null);
@@ -111,6 +118,10 @@ public class InGame extends JFrame implements ActionListener
         			else if (map[row][col] instanceof Bomber && !isPlayer1)
         			{
         				g.drawImage(bomber2, xPixel, yPixel, bombers);
+        			}
+        			else if (map[row][col] instanceof Smoke)
+        			{
+        				g.drawImage(smoke, xPixel, yPixel, bombers);
         			}
         		}
         		xPixel += 64;
@@ -136,6 +147,7 @@ public class InGame extends JFrame implements ActionListener
 	{
 		public void keyPressed(KeyEvent event)
 		{
+			System.out.println(event.getKeyCode());
 			if (event.getKeyCode() == KeyEvent.VK_W)
 			{
 				mapReader.player1Move('W');
@@ -190,6 +202,17 @@ public class InGame extends JFrame implements ActionListener
 				mapReader.player2Move('D');
 				map = mapReader.getMap();
 				repaint();
+			}
+			else if (event.getKeyCode() == KeyEvent.VK_T) {
+				mapReader.dropBomb('1');
+				map = mapReader.getMap();
+				repaint();
+			}
+			else if (event.getKeyCode() == KeyEvent.VK_P) {
+				mapReader.dropBomb('2');
+				map = mapReader.getMap();
+				repaint();
+				System.out.println("poop");
 			}
 		}
 		
