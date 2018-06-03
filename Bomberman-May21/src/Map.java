@@ -233,33 +233,47 @@ public class Map implements ActionListener
 
 	public void explode(int r, int c, int power) {
 		actorMap[r][c] = null;
+		boolean broken;
+		broken = false;
 		for (int u = 1; u <= power; u++) { //up
-			if (!(actorMap[r + u][c] instanceof UnbreakableBlock)) {
+			if (!(actorMap[r + u][c] instanceof UnbreakableBlock) && !broken) {
 				Smoke s = new Smoke(r + u, c);
+				if (actorMap[r + u][c] instanceof BreakableBlock)
+					broken = true;
 				actorMap[r + u][c] = null;
+				
 			}
 			else
 				break;
 		}
+		broken = false;
 		for (int d = 1; d <= power; d++) { //down
-			if (!(actorMap[r - d][c] instanceof UnbreakableBlock)) {
+			if (!(actorMap[r - d][c] instanceof UnbreakableBlock) && !broken) {
 				Smoke s = new Smoke(r - d, c);
+				if (actorMap[r - d][c] instanceof BreakableBlock)
+					broken = true;
 				actorMap[r - d][c] = null;
 			}
 			else
 				break;
 		}
+		broken = false;
 		for (int l = 1; l <= power; l++) { //left
-			if (!(actorMap[r][c - l] instanceof UnbreakableBlock)) {
+			if (!(actorMap[r][c - l] instanceof UnbreakableBlock) && !broken) {
 				Smoke s = new Smoke(r, c - l);
+				if (actorMap[r][c - l] instanceof BreakableBlock)
+					broken = true;
 				actorMap[r][c - l] = null;
 			}
 			else
 				break;
 		}
+		broken = false;
 		for (int right = 1; right <= power; right++) { //right
-			if (!(actorMap[r][c + right] instanceof UnbreakableBlock)) {
+			if (!(actorMap[r][c + right] instanceof UnbreakableBlock) && !broken) {
 				Smoke s = new Smoke(r, c + r);
+				if (actorMap[r][c + right] instanceof BreakableBlock)
+					broken = true;
 				actorMap[r][c + right] = null;
 			}
 			else
