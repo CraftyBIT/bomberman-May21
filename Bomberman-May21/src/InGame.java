@@ -45,7 +45,7 @@ public class InGame extends JFrame implements ActionListener
 		breakable = imageLoader.getBreakableImage().getImage();
 		stoneTile = imageLoader.getStoneTileImage().getImage();
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
-		smoke = imageLoader.getSmokeImage().getImage();
+		smoke = imageLoader.getExplosionImage().getImage();
 		
 		addKeyListener(new KeyHandler());
 		
