@@ -389,7 +389,8 @@ public class Map implements ActionListener
 
 	public void explode(int r, int c, int power) 
 	{
-		actorMap[r][c] = null;
+		Explosion mid = new Explosion(r, c);
+		actorMap[r][c] = mid;
 		boolean broken;
 		broken = false;
 		
@@ -397,7 +398,7 @@ public class Map implements ActionListener
 		{ // up
 			if (!(actorMap[r + u][c] instanceof UnbreakableBlock) && !(actorMap[r + u][c] instanceof Bomb) && !broken) 
 			{
-				Smoke s = new Smoke(r + u, c);
+				Explosion ex = new Explosion(r + u, c);
 				if (actorMap[r + u][c] instanceof BreakableBlock)
 				{
 					broken = true;
@@ -411,7 +412,7 @@ public class Map implements ActionListener
 				}
 				else
 				{
-					actorMap[r + u][c] = null;
+					actorMap[r + u][c] = ex;
 				}
 			}
 			else
@@ -425,12 +426,12 @@ public class Map implements ActionListener
 		{ //down
 			if (!(actorMap[r - d][c] instanceof UnbreakableBlock) && !(actorMap[r - d][c] instanceof Bomb) && !broken) 
 			{
-				Smoke s = new Smoke(r - d, c);
+				Explosion ex = new Explosion(r - d, c);
 				if (actorMap[r - d][c] instanceof BreakableBlock)
 				{
 					broken = true;
 				}
-				actorMap[r - d][c] = null;
+				actorMap[r - d][c] = ex;
 			}
 			else 
 			{
@@ -444,10 +445,12 @@ public class Map implements ActionListener
 		{ //left
 			if (!(actorMap[r][c - l] instanceof UnbreakableBlock) && !(actorMap[r][c - 1] instanceof Bomb) && !broken) 
 			{
-				Smoke s = new Smoke(r, c - l);
+				Explosion ex = new Explosion(r, c - l);
 				if (actorMap[r][c - l] instanceof BreakableBlock)
+				{
 					broken = true;
-				actorMap[r][c - l] = null;
+				}
+				actorMap[r][c - l] = ex;
 			}
 			else 
 			{
@@ -459,10 +462,12 @@ public class Map implements ActionListener
 		{ //right
 			if (!(actorMap[r][c + right] instanceof UnbreakableBlock) && !(actorMap[r][c + right] instanceof Bomb) && !broken) 
 			{
-				Smoke s = new Smoke(r, c + r);
+				Explosion ex = new Explosion(r, c + r);
 				if (actorMap[r][c + right] instanceof BreakableBlock)
+				{
 					broken = true;
-				actorMap[r][c + right] = null;
+				}
+				actorMap[r][c + right] = ex;
 			}
 			else 
 			{
@@ -501,14 +506,15 @@ public class Map implements ActionListener
 						}
 						explode(((Bomb) a).getRow(), ((Bomb) a).getColumn(), ((Bomb) a).getPower());
 					}
-					
-					if (a instanceof Smoke) 
-					{
-						if (((Smoke) a).clear()) 
+				}
+				else if (a instanceof Explosion) 
+				{
+						if (((Explosion) a).clear())
 						{
-							actorMap[((Smoke) a).getRow()][((Bomb) a).getColumn()] = null;
+							int tRow = a.getRow();
+							int tCol = a.getColumn();
+							actorMap[tRow][tCol] = null;
 						}
-					}
 				}
 			}
 		}

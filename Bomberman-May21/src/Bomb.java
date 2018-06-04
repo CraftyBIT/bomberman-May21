@@ -3,7 +3,7 @@
 public class Bomb extends Actor
 {
 	private int bombPower, playerId;
-	private int time = 0;
+	private int time;
 	private final int explodeTime = 30; //explode after 3 seconds
 	
 	public Bomb(int row, int column, int power, int player)
@@ -11,6 +11,7 @@ public class Bomb extends Actor
 		super(row, column);
 		bombPower = power;		
 		playerId = player;
+		time = 0;
 	}
 	
 	public boolean boom()

@@ -12,7 +12,7 @@ public class InGame extends JFrame implements ActionListener
 	private JPanel bombers, iGame;
 	private JButton startButton;
 	private Actor[][] map;
-	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, smoke, stoneTile, unbreakable;
+	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, stoneTile, unbreakable;
 	private Graphics dbGraphics;
 	private int xPixel = 2, yPixel = 30;
 	private boolean gameOver = true;
@@ -46,7 +46,6 @@ public class InGame extends JFrame implements ActionListener
 		explosion = imageLoader.getExplosionImage().getImage();
 		breakable = imageLoader.getBreakableImage().getImage();
 		powerPowerUp = imageLoader.getExplosionPowerUpImage().getImage();
-		smoke = imageLoader.getExplosionImage().getImage();
 		stoneTile = imageLoader.getStoneTileImage().getImage();
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
 		
@@ -134,9 +133,9 @@ public class InGame extends JFrame implements ActionListener
         					g.drawImage(powerPowerUp, xPixel, yPixel, iGame);
         				}
         			}
-        			else if (map[row][col] instanceof Smoke)
+        			else if (map[row][col] instanceof Explosion)
         			{
-        				g.drawImage(smoke, xPixel, yPixel, bombers);
+        				g.drawImage(explosion, xPixel, yPixel, iGame);
         			}
         		}
         		xPixel += 64;
