@@ -12,7 +12,7 @@ public class InGame extends JFrame implements ActionListener
 	private JPanel bombers, iGame;
 	private JButton startButton;
 	private Actor[][] map;
-	private Image bomb, bomber, bomber2, breakable, dbImage, smoke, stoneTile, unbreakable;
+	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, smoke, stoneTile, unbreakable;
 	private Graphics dbGraphics;
 	private int xPixel = 2, yPixel = 30;
 	private boolean gameOver = true;
@@ -42,7 +42,10 @@ public class InGame extends JFrame implements ActionListener
 		bomb = imageLoader.getBombImage().getImage();
 		bomber = imageLoader.getBomberImage().getImage();
 		bomber2 = imageLoader.getBomberImage2().getImage();
+		bombPowerUp = imageLoader.getBombPowerUpImage().getImage();
+		explosion = imageLoader.getExplosionImage().getImage();
 		breakable = imageLoader.getBreakableImage().getImage();
+		powerPowerUp = imageLoader.getExplosionPowerUpImage().getImage();
 		smoke = imageLoader.getExplosionImage().getImage();
 		stoneTile = imageLoader.getStoneTileImage().getImage();
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
@@ -116,9 +119,21 @@ public class InGame extends JFrame implements ActionListener
         			{
         				g.drawImage(bomber2, xPixel, yPixel, bombers);
         			}
-        			else if (map[row][col] instanceof Bomb) {
+        			else if (map[row][col] instanceof Bomb)
+        			{
             			g.drawImage(bomb, xPixel, yPixel, iGame);
             		}
+        			else if (map[row][col] instanceof PowerUp)
+        			{
+        				if (map[row][col].getId() == 0)
+        				{
+        					g.drawImage(bombPowerUp, xPixel, yPixel, iGame);
+        				}
+        				else
+        				{
+        					g.drawImage(powerPowerUp, xPixel, yPixel, iGame);
+        				}
+        			}
         			else if (map[row][col] instanceof Smoke)
         			{
         				g.drawImage(smoke, xPixel, yPixel, bombers);
