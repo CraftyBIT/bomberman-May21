@@ -6,4 +6,9 @@ public class Smoke extends Actor
 	{
 		super(row, column);
 	}
+	
+	public boolean clear()
+	{
+		return true;
+	}
 }

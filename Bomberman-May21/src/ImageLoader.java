@@ -16,7 +16,7 @@ public class ImageLoader
 			bomber = new ImageIcon(cldr.getResource("images/bomber.png"));
 			bomber2 = new ImageIcon(cldr.getResource("images/bomber2.png"));
 			breakable = new ImageIcon(cldr.getResource("images/breakable.png"));
-			explosion = new ImageIcon(cldr.getResource("image/explosion.png"));
+			explosion = new ImageIcon(cldr.getResource("images/explosion.png"));
 			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
 			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
 			smoke = new ImageIcon(cldr.getResource("images/unbreakable.png"));
