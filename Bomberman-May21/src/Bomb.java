@@ -1,4 +1,3 @@
-
 // Project Bomberman
 
 public class Bomb extends Actor
