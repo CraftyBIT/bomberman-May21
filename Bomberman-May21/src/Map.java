@@ -327,12 +327,6 @@ public class Map implements ActionListener
 		}
 	}
 	
-	public void explode(Bomb boop) 
-	{
-		int row = boop.getRow();
-		int col = boop.getColumn();
-	}
-	
 	public Actor[][] getMap()
 	{
 		return actorMap;
@@ -440,7 +434,6 @@ public class Map implements ActionListener
 		}
 		
 		broken = false;
-		
 		for (int l = 1; l <= power; l++) 
 		{ //left
 			if (!(actorMap[r][c - l] instanceof UnbreakableBlock) && !(actorMap[r][c - 1] instanceof Bomb) && !broken) 
@@ -457,6 +450,7 @@ public class Map implements ActionListener
 				break;
 			}
 		}
+		
 		broken = false;
 		for (int right = 1; right <= power; right++) 
 		{ //right
