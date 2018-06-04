@@ -474,16 +474,6 @@ public class Map implements ActionListener
 				break;
 			}
 		}
-		for(Actor[] row: actorMap) 
-		{
-			for (Actor a: row) 
-			{
-				if (a instanceof Bomber) 
-				{
-					
-				}
-			}
-		}
 	}
 	
 	public void actionPerformed(ActionEvent e) 
