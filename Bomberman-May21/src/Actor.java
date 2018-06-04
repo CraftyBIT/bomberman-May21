@@ -35,4 +35,14 @@ public class Actor
 	{
 		myColumn = column;
 	}
+	
+	public int getPower()
+	{
+		return 1;
+	}
+	
+	public int getPlayer()
+	{
+		return 1;
+	}
 }

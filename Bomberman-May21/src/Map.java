@@ -15,7 +15,9 @@ public class Map implements ActionListener
 	private int[][] intMap;
 	private Actor[][] actorMap;
 	private int rowLoc, rowLoc2, colLoc, colLoc2;
+	private int p1ba, p1bp, p2ba, p2bp; // players bomb amount and bomb power
 	private int b1rl, b1cl, b2rl, b2cl; //stores bomb locations for players 1 and 2
+	private int bpp1, bpp2; // bombs placed players 1 and 2
 	private boolean moved1, moved2;
 	
 	public Map(String map) 
@@ -29,14 +31,14 @@ public class Map implements ActionListener
 		rowLoc2 = actorMap[9][13].getRow();
 		colLoc2 = actorMap[9][13].getColumn();
 		
+		p1ba = p1bp = p2ba = p2bp = 1;
+		
+		bpp1 = bpp2 = 0;
 		b1rl = b1cl = b2rl = b2cl = -1;
 		
 		Timer timer = new Timer(100, this);
 		timer.start();
 	}
-	
-	
-
 	
 	public void player1Move(char ch)
 	{
@@ -84,7 +86,8 @@ public class Map implements ActionListener
 			}
 		}
 		
-		if (moved1) {
+		if (moved1) 
+		{
 			startBomb('1');
 			moved1 = false;
 		}
@@ -136,7 +139,8 @@ public class Map implements ActionListener
 			}
 		}
 		
-		if (moved2) {
+		if (moved2) 
+		{
 			startBomb('2');
 			moved2 = false;
 		}
@@ -154,25 +158,32 @@ public class Map implements ActionListener
 		
 	}
 	
-	public void startBomb(char ch) {
-		if (ch == '1') {
-			if (b1rl != -1) {
-				Bomb boom = new Bomb(b1rl, b1cl, 3);
+	public void startBomb(char ch) 
+	{
+		if (ch == '1') 
+		{
+			if (b1rl != -1 && p1ba > bpp1) 
+			{
+				Bomb boom = new Bomb(b1rl, b1cl, p1bp, 1);
 				actorMap[b1rl][b1cl] = boom;
+				bpp1++;
 				b1rl = b1cl = -1;
-				
 			}
 		}
-		else if (ch == '2') {
-			if (b2rl != -1) {
-				Bomb boom = new Bomb(b2rl, b2cl, 3);
+		else if (ch == '2') 
+		{
+			if (b2rl != -1 && p2ba > bpp2) 
+			{
+				Bomb boom = new Bomb(b2rl, b2cl, p2bp, 2);
 				actorMap[b2rl][b2cl] = boom;
+				bpp2++;
 				b2rl = b2cl = -1;
 			}
 		}
 	}
 	
-	public void explode(Bomb boop) {
+	public void explode(Bomb boop) 
+	{
 		int row = boop.getRow();
 		int col = boop.getColumn();
 	}
@@ -231,24 +242,30 @@ public class Map implements ActionListener
 		}
 	}
 
-	public void explode(int r, int c, int power) {
+	public void explode(int r, int c, int power) 
+	{
 		actorMap[r][c] = null;
 		boolean broken;
 		broken = false;
-		for (int u = 1; u <= power; u++) { //up
-			if (!(actorMap[r + u][c] instanceof UnbreakableBlock) && !broken) {
+		for (int u = 1; u <= power; u++) 
+		{ // up
+			if (!(actorMap[r + u][c] instanceof UnbreakableBlock) && !broken) 
+			{
 				Smoke s = new Smoke(r + u, c);
 				if (actorMap[r + u][c] instanceof BreakableBlock)
 					broken = true;
 				actorMap[r + u][c] = null;
-				
 			}
 			else
+			{
 				break;
+			}
 		}
 		broken = false;
-		for (int d = 1; d <= power; d++) { //down
-			if (!(actorMap[r - d][c] instanceof UnbreakableBlock) && !broken) {
+		for (int d = 1; d <= power; d++) 
+		{ //down
+			if (!(actorMap[r - d][c] instanceof UnbreakableBlock) && !broken) 
+			{
 				Smoke s = new Smoke(r - d, c);
 				if (actorMap[r - d][c] instanceof BreakableBlock)
 					broken = true;
@@ -258,8 +275,10 @@ public class Map implements ActionListener
 				break;
 		}
 		broken = false;
-		for (int l = 1; l <= power; l++) { //left
-			if (!(actorMap[r][c - l] instanceof UnbreakableBlock) && !broken) {
+		for (int l = 1; l <= power; l++) 
+		{ //left
+			if (!(actorMap[r][c - l] instanceof UnbreakableBlock) && !broken) 
+			{
 				Smoke s = new Smoke(r, c - l);
 				if (actorMap[r][c - l] instanceof BreakableBlock)
 					broken = true;
@@ -269,35 +288,56 @@ public class Map implements ActionListener
 				break;
 		}
 		broken = false;
-		for (int right = 1; right <= power; right++) { //right
-			if (!(actorMap[r][c + right] instanceof UnbreakableBlock) && !broken) {
+		for (int right = 1; right <= power; right++) 
+		{ //right
+			if (!(actorMap[r][c + right] instanceof UnbreakableBlock) && !broken) 
+			{
 				Smoke s = new Smoke(r, c + r);
 				if (actorMap[r][c + right] instanceof BreakableBlock)
 					broken = true;
 				actorMap[r][c + right] = null;
 			}
-			else
+			else 
+			{
 				break;
+			}
 		}
-		for(Actor[] row: actorMap) {
-			for (Actor a: row) {
-				if (a instanceof Bomber) {
+		for(Actor[] row: actorMap) 
+		{
+			for (Actor a: row) 
+			{
+				if (a instanceof Bomber) 
+				{
 					
 				}
 			}
 		}
-		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		for(Actor[] row: actorMap) {
-			for (Actor a: row) {
-				if (a instanceof Bomb) {
-					if (((Bomb) a).boom()) {
+	public void actionPerformed(ActionEvent e) 
+	{
+		for(Actor[] row: actorMap) 
+		{
+			for (Actor a: row) 
+			{
+				if (a instanceof Bomb) 
+				{
+					if (((Bomb) a).boom())
+					{
+						if (a.getPlayer() == 1)
+						{
+							bpp1--;
+						}
+						else if (a.getPlayer() == 2)
+						{
+							bpp2--;
+						}
 						explode(((Bomb) a).getRow(), ((Bomb) a).getColumn(), ((Bomb) a).getPower());
 					}
-					if (a instanceof Smoke) {
-						if (((Smoke) a).clear()) {
+					if (a instanceof Smoke) 
+					{
+						if (((Smoke) a).clear()) 
+						{
 							actorMap[((Smoke) a).getRow()][((Bomb) a).getColumn()] = null;
 						}
 					}
