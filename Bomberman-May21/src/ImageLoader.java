@@ -15,10 +15,10 @@ public class ImageLoader
 			bomb = new ImageIcon(cldr.getResource("images/bomb.png"));
 			bomber = new ImageIcon(cldr.getResource("images/bomber.png"));
 			bomber2 = new ImageIcon(cldr.getResource("images/bomber2.png"));
-			bombPowerUp = new ImageIcon(cldr.getResource("images.powerup1"));
+			bombPowerUp = new ImageIcon(cldr.getResource("images/powerup1.png"));
 			breakable = new ImageIcon(cldr.getResource("images/breakable.png"));
 			explosion = new ImageIcon(cldr.getResource("images/explosion.png"));
-			explosionPowerUp = new ImageIcon(cldr.getResource("images.powerup2.png"));
+			explosionPowerUp = new ImageIcon(cldr.getResource("images/powerup2.png"));
 			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
 			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
 			smoke = new ImageIcon(cldr.getResource("images/unbreakable.png"));

@@ -12,7 +12,7 @@ public class InGame extends JFrame implements ActionListener
 	private JPanel bombers, iGame;
 	private JButton startButton;
 	private Actor[][] map;
-	private Image bomb, bomber, bomber2, breakable, stoneTile, unbreakable, smoke, dbImage;
+	private Image bomb, bomber, bomber2, breakable, dbImage, smoke, stoneTile, unbreakable;
 	private Graphics dbGraphics;
 	private int xPixel = 2, yPixel = 30;
 	private boolean gameOver = true;
@@ -43,9 +43,9 @@ public class InGame extends JFrame implements ActionListener
 		bomber = imageLoader.getBomberImage().getImage();
 		bomber2 = imageLoader.getBomberImage2().getImage();
 		breakable = imageLoader.getBreakableImage().getImage();
+		smoke = imageLoader.getExplosionImage().getImage();
 		stoneTile = imageLoader.getStoneTileImage().getImage();
 		unbreakable = imageLoader.getUnbreakableImage().getImage();
-		smoke = imageLoader.getExplosionImage().getImage();
 		
 		addKeyListener(new KeyHandler());
 		
