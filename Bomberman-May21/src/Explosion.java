@@ -3,7 +3,7 @@
 public class Explosion extends Actor
 {
 	private int time;
-	private final int clearTime = 5; // half a second
+	private final int clearTime = 2; // ~quarter a second
 	
 	public Explosion(int row, int column)
 	{

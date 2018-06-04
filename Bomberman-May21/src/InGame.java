@@ -77,7 +77,7 @@ public class InGame extends JFrame implements ActionListener
 		setContentPane(layered);
 		setVisible(true);
 		
-		Timer timer = new javax.swing.Timer(50, this);
+		Timer timer = new javax.swing.Timer(10, this);
 		timer.start();
 	}
 	
