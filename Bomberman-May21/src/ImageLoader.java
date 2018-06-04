@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class ImageLoader
 {
-	private ImageIcon bomb, bomber, bomber2, bombPowerUp, breakable, explosion, explosionPowerUp, stoneTile, unbreakable, smoke;
+	private ImageIcon bomb, bomber, bomber2, bombPowerUp, breakable, explosion, explosionPowerUp, stoneTile, unbreakable;
 	
 	public ImageLoader()
 	{
@@ -21,7 +21,6 @@ public class ImageLoader
 			explosionPowerUp = new ImageIcon(cldr.getResource("images/powerup2.png"));
 			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
 			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
-			smoke = new ImageIcon(cldr.getResource("images/unbreakable.png"));
 		}
 		catch (Exception e)
 		{
@@ -62,11 +61,6 @@ public class ImageLoader
 	public ImageIcon getUnbreakableImage()
 	{
 		return unbreakable;
-	}
-	
-	public ImageIcon getSmokeImage()
-	{
-		return smoke;
 	}
 	
 	public ImageIcon getBombPowerUpImage()
