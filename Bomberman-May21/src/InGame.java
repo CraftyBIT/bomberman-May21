@@ -203,12 +203,12 @@ public class InGame extends JFrame implements ActionListener
 				map = mapReader.getMap();
 				repaint();
 			}
-			else if (event.getKeyCode() == KeyEvent.VK_T) {
+			else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
 				mapReader.dropBomb('1');
 				map = mapReader.getMap();
 				repaint();
 			}
-			else if (event.getKeyCode() == KeyEvent.VK_P) {
+			else if (event.getKeyCode() == KeyEvent.VK_CONTROL) {
 				mapReader.dropBomb('2');
 				map = mapReader.getMap();
 				repaint();
