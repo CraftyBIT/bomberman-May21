@@ -15,7 +15,7 @@ public class InGame extends JFrame implements ActionListener
 	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, stoneTile, unbreakable;
 	private Graphics dbGraphics;
 	private int xPixel = 2, yPixel = 30;
-	private boolean gameOver = true;
+	private boolean gameOver = true, isAlive = false, isAlive2 = false;
 	private Map mapReader;
 	
 	public Action actionTime;
@@ -94,6 +94,9 @@ public class InGame extends JFrame implements ActionListener
 		super.paint(g);
 		boolean isPlayer1 = true;
 		
+		isAlive = false;
+		isAlive2 = false;
+		
 		for (int row = 0; row < rLength; row++)
         {
         	for (int col = 0; col < cLength; col++)
@@ -112,11 +115,13 @@ public class InGame extends JFrame implements ActionListener
         			if (map[row][col] instanceof Bomber && isPlayer1)
         			{
         				g.drawImage(bomber, xPixel, yPixel, bombers);
+        				isAlive = true;
         				isPlayer1 = false;
         			}
         			else if (map[row][col] instanceof Bomber && !isPlayer1)
         			{
         				g.drawImage(bomber2, xPixel, yPixel, bombers);
+        				isAlive2 = true;
         			}
         			else if (map[row][col] instanceof Bomb)
         			{
@@ -145,6 +150,22 @@ public class InGame extends JFrame implements ActionListener
         }
 		xPixel = 2;
 		yPixel = 30;
+		
+		if (!isAlive)
+		{
+			// Player 2 Wins
+			gameOver = true;
+		}
+		else if (!isAlive2)
+		{
+			// Player 1 Wins
+			gameOver = true;
+		}
+		else if (!isAlive && !isAlive2)
+		{
+			// gameOver
+			gameOver = true;
+		}
 	}
 	
 	public void actionPerformed(ActionEvent event)
@@ -161,72 +182,77 @@ public class InGame extends JFrame implements ActionListener
 	{
 		public void keyPressed(KeyEvent event)
 		{
-			System.out.println(event.getKeyCode());
-			if (event.getKeyCode() == KeyEvent.VK_W)
+			if (!gameOver)
 			{
-				mapReader.player1Move('W');
-				map = mapReader.getMap();
-				repaint();
-			}
+				System.out.println(event.getKeyCode());
+				if (event.getKeyCode() == KeyEvent.VK_W)
+				{
+					mapReader.player1Move('W');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			else if (event.getKeyCode() == KeyEvent.VK_S)
-			{
-				mapReader.player1Move('S');
-				map = mapReader.getMap();
-				repaint();
-			}
+				else if (event.getKeyCode() == KeyEvent.VK_S)
+				{
+					mapReader.player1Move('S');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			else if (event.getKeyCode() == KeyEvent.VK_A)
-			{
-				mapReader.player1Move('A');
-				map = mapReader.getMap();
-				repaint();
-			}
+				else if (event.getKeyCode() == KeyEvent.VK_A)
+				{
+					mapReader.player1Move('A');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			else if (event.getKeyCode() == KeyEvent.VK_D)
-			{
-				mapReader.player1Move('D');
-				map = mapReader.getMap();
-				repaint();
-			}
+				else if (event.getKeyCode() == KeyEvent.VK_D)
+				{
+					mapReader.player1Move('D');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			if (event.getKeyCode() == KeyEvent.VK_UP)
-			{
-				mapReader.player2Move('W');
-				map = mapReader.getMap();
-				repaint();
-			}
+				if (event.getKeyCode() == KeyEvent.VK_UP)
+				{
+					mapReader.player2Move('W');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			else if (event.getKeyCode() == KeyEvent.VK_DOWN)
-			{
-				mapReader.player2Move('S');
-				map = mapReader.getMap();
-				repaint();
-			}
+				else if (event.getKeyCode() == KeyEvent.VK_DOWN)
+				{
+					mapReader.player2Move('S');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			else if (event.getKeyCode() == KeyEvent.VK_LEFT)
-			{
-				mapReader.player2Move('A');
-				map = mapReader.getMap();
-				repaint();
-			}
+				else if (event.getKeyCode() == KeyEvent.VK_LEFT)
+				{
+					mapReader.player2Move('A');
+					map = mapReader.getMap();
+					repaint();
+				}
 			
-			else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
-			{
-				mapReader.player2Move('D');
-				map = mapReader.getMap();
-				repaint();
-			}
-			else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
-				mapReader.dropBomb('1');
-				map = mapReader.getMap();
-				repaint();
-			}
-			else if (event.getKeyCode() == KeyEvent.VK_CONTROL) {
-				mapReader.dropBomb('2');
-				map = mapReader.getMap();
-				repaint();
-				System.out.println("poop");
+				else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
+				{
+					mapReader.player2Move('D');
+					map = mapReader.getMap();
+					repaint();
+				}
+				
+				else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
+					mapReader.dropBomb('1');
+					map = mapReader.getMap();
+					repaint();
+				}
+				
+				else if (event.getKeyCode() == KeyEvent.VK_CONTROL) {
+					mapReader.dropBomb('2');
+					map = mapReader.getMap();
+					repaint();
+					System.out.println("poop");
+				}
 			}
 		}
 		
