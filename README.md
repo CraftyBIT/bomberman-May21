@@ -44,11 +44,16 @@ Explosion
 
 
 Bomberman Background Menu
+
 http://www.thepinsta.com/super-bomberman-r-cast_0yFeuipEsHLjKsH7eiH%7Ciov4PJB2n0xwrweVTQPF83M/
 
 https://docs.oracle.com/javase/8/javafx/layout-tutorial/builtin_layouts.htm#JFXLY102
+
 https://www.youtube.com/watch?v=K9qMm3JbOH0
+
 Image Double Buffering Tutorial: Leann
+
 https://www.youtube.com/watch?v=4T3WJEH7zrc
-Image Loading and Map Loading Help: Leann G
+
+Image Loading and Map Loading Help
 
