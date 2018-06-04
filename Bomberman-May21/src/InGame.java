@@ -104,9 +104,6 @@ public class InGame extends JFrame implements ActionListener
         		{
         			g.drawImage(breakable, xPixel, yPixel, iGame);
         		}
-        		else if (map[row][col] instanceof Bomb) {
-        			g.drawImage(bomb, xPixel, yPixel, iGame);
-        		}
         		else
         		{
         			g.drawImage(stoneTile, xPixel, yPixel, null);
@@ -119,6 +116,9 @@ public class InGame extends JFrame implements ActionListener
         			{
         				g.drawImage(bomber2, xPixel, yPixel, bombers);
         			}
+        			else if (map[row][col] instanceof Bomb) {
+            			g.drawImage(bomb, xPixel, yPixel, iGame);
+            		}
         			else if (map[row][col] instanceof Smoke)
         			{
         				g.drawImage(smoke, xPixel, yPixel, bombers);
