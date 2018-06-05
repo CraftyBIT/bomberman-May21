@@ -18,7 +18,7 @@ public class Instructions extends JFrame implements ActionListener
 		super("Bomberman");
 		setSize(400,400);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationByPlatform(true);
 		
 		backButton = new JButton("Back");
@@ -36,7 +36,6 @@ public class Instructions extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent event)
 	{
 		if (event.getSource() == backButton){
-			MainMenu meme = new MainMenu();
 			this.dispose();
 		}
 		
