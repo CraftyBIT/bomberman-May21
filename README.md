@@ -5,7 +5,11 @@ Ms. Neuhaus Period 2
 
 Created by Charles, Cornell, David, Richard
 
-## Acknowledgments
+## To Do:
+
+Fix bug where powerups spawn on empty tiles
+make powerups less OP (less common)
+Fix bug when a player overtakes the other's Y pos, they switch textures
 ### Inspiration
 2D Original Bomberman 
 
