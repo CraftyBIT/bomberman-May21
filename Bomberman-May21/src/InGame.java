@@ -22,10 +22,10 @@ public class InGame extends JFrame implements ActionListener
 	
 	public static final int rLength = 11, cLength = 15, resolution = 64;
 	
-	public static void main(String[] args)
+	/*public static void main(String[] args) //would highly suggest removing main method from InGame()
 	{
 		InGame inGame = new InGame();
-	}
+	}*/
 	
 	public InGame()
 	{
