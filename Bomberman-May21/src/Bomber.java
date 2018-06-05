@@ -2,18 +2,20 @@
 
 public class Bomber extends Actor
 {
-	private int myBombs, myPower;
+	private int myBombs, myPower, bombsPlaced;
 	
 	public Bomber(int row, int column)
 	{
 		super(row, column);
-		myBombs = 1;
+		myBombs = 1; // number of bombs placed at one time
 		myPower = 1;
+		bombsPlaced = 0;
 	}
 	
 	public void addBombs()
 	{
 		myBombs++;
+		System.out.println("u fucked up sir");
 	}
 	
 	public void addPower()
@@ -29,5 +31,16 @@ public class Bomber extends Actor
 	public int getPower()
 	{
 		return myPower;
+	}
+	public void placeBomb(){
+		bombsPlaced++;
+	}
+	public void exploded(){
+		bombsPlaced--;
+	}
+	public boolean ableToPlace(){
+		if (bombsPlaced < myBombs)
+			return true;
+		return false;
 	}
 }
