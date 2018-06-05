@@ -384,8 +384,8 @@ public class Map implements ActionListener
 	public void explode(int r, int c, int power) 
 	{
 		actorMap[r][c] = new Explosion(r, c);
-		boolean broken = false;
 		
+		boolean broken = false;
 		for (int u = 1; u <= power; u++) 
 		{ // up
 			if (!(actorMap[r + u][c] instanceof UnbreakableBlock) && !(actorMap[r + u][c] instanceof Bomb) && !broken) 
@@ -394,11 +394,14 @@ public class Map implements ActionListener
 				if (actorMap[r + u][c] instanceof BreakableBlock)
 				{
 					broken = true;
-				}
 				
-				if (1 == (int) (Math.random() * 2))
-				{
-					actorMap[r + u][c] = new PowerUp(r + u, c);
+					if (1 == (int) (Math.random() * 2))
+					{
+						actorMap[r + u][c] = new PowerUp(r + u, c);
+					}
+					else{
+						actorMap[r + u][c] = ex;
+					}
 				}
 				else
 				{
@@ -420,11 +423,14 @@ public class Map implements ActionListener
 				if (actorMap[r - d][c] instanceof BreakableBlock)
 				{
 					broken = true;
-				}
 				
-				if (1 == (int) (Math.random() * 2))
-				{
-					actorMap[r - d][c] = new PowerUp(r - d, c);
+					if (1 == (int) (Math.random() * 2))
+					{
+						actorMap[r - d][c] = new PowerUp(r - d, c);
+					}
+					else{
+						actorMap[r - d][c] = ex;
+					}
 				}
 				else
 				{
@@ -446,12 +452,15 @@ public class Map implements ActionListener
 				if (actorMap[r][c - l] instanceof BreakableBlock)
 				{
 					broken = true;
-				}
-				actorMap[r][c - l] = ex;
 				
-				if (1 == (int) (Math.random() * 2))
-				{
-					actorMap[r][c - l] = new PowerUp(r, c - l);
+					if (1 == (int) (Math.random() * 2))
+					{
+						actorMap[r][c - l] = new PowerUp(r, c - l);
+					}
+					else{
+						actorMap[r][c - l] = ex;
+					}
+					
 				}
 				else
 				{
@@ -473,12 +482,14 @@ public class Map implements ActionListener
 				if (actorMap[r][c + right] instanceof BreakableBlock)
 				{
 					broken = true;
-				}
-				actorMap[r][c + right] = ex;
 				
-				if (1 == (int) (Math.random() * 2))
-				{
-					actorMap[r][c + right] = new PowerUp(r, c + right);
+					if (1 == (int) (Math.random() * 2))
+					{
+						actorMap[r][c + right] = new PowerUp(r, c + right);
+					}
+					else{
+						actorMap[r][c + right] = ex;
+					}
 				}
 				else
 				{
