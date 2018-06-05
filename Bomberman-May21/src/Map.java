@@ -469,7 +469,7 @@ public class Map implements ActionListener
 		{ //right
 			if (!(actorMap[r][c + right] instanceof UnbreakableBlock) && !(actorMap[r][c + right] instanceof Bomb) && !broken) 
 			{
-				Explosion ex = new Explosion(r, c + r);
+				Explosion ex = new Explosion(r, c + right);
 				if (actorMap[r][c + right] instanceof BreakableBlock)
 				{
 					broken = true;
