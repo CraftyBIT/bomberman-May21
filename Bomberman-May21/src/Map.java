@@ -383,10 +383,8 @@ public class Map implements ActionListener
 
 	public void explode(int r, int c, int power) 
 	{
-		Explosion mid = new Explosion(r, c);
-		actorMap[r][c] = mid;
-		boolean broken;
-		broken = false;
+		actorMap[r][c] = new Explosion(r, c);
+		boolean broken = false;
 		
 		for (int u = 1; u <= power; u++) 
 		{ // up
@@ -398,11 +396,9 @@ public class Map implements ActionListener
 					broken = true;
 				}
 				
-				int rand = (int) (Math.random() * 2);
-				if (rand == 1)
+				if (1 == (int) (Math.random() * 2))
 				{
-					PowerUp powerUp = new PowerUp(r + u, c);
-					actorMap[r + u][c] = powerUp;
+					actorMap[r + u][c] = new PowerUp(r + u, c);
 				}
 				else
 				{
@@ -425,7 +421,15 @@ public class Map implements ActionListener
 				{
 					broken = true;
 				}
-				actorMap[r - d][c] = ex;
+				
+				if (1 == (int) (Math.random() * 2))
+				{
+					actorMap[r - d][c] = new PowerUp(r - d, c);
+				}
+				else
+				{
+					actorMap[r - d][c] = ex;
+				}
 			}
 			else 
 			{
@@ -444,6 +448,15 @@ public class Map implements ActionListener
 					broken = true;
 				}
 				actorMap[r][c - l] = ex;
+				
+				if (1 == (int) (Math.random() * 2))
+				{
+					actorMap[r][c - l] = new PowerUp(r, c - l);
+				}
+				else
+				{
+					actorMap[r][c - l] = ex;
+				}
 			}
 			else 
 			{
@@ -462,6 +475,15 @@ public class Map implements ActionListener
 					broken = true;
 				}
 				actorMap[r][c + right] = ex;
+				
+				if (1 == (int) (Math.random() * 2))
+				{
+					actorMap[r][c + right] = new PowerUp(r, c + right);
+				}
+				else
+				{
+					actorMap[r][c + right] = ex;
+				}
 			}
 			else 
 			{
