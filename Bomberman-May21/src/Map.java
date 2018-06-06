@@ -357,11 +357,11 @@ public class Map implements ActionListener
 			{
 				switch (intMap[row][col])
 				{
-					case 1: player1 = new Bomber(row, col);
+					case 1: player1 = new Bomber(row, col, 1);
 							actorMap[row][col] = player1;
 							break;
 							
-					case 2: player2 = new Bomber(row, col);
+					case 2: player2 = new Bomber(row, col, 2);
 							actorMap[row][col] = player2;
 							break;
 							

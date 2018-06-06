@@ -2,14 +2,15 @@
 
 public class Bomber extends Actor
 {
-	private int myBombs, myPower, bombsPlaced;
+	private int myBombs, myPower, bombsPlaced, myplayerId;
 	
-	public Bomber(int row, int column)
+	public Bomber(int row, int column, int playerId)
 	{
 		super(row, column);
 		myBombs = 1; // number of bombs placed at one time
 		myPower = 1;
 		bombsPlaced = 0;
+		myplayerId = playerId;
 	}
 	
 	public void addBombs()
@@ -42,5 +43,8 @@ public class Bomber extends Actor
 		if (bombsPlaced < myBombs)
 			return true;
 		return false;
+	}
+	public int getId() {
+		return myplayerId;
 	}
 }

@@ -92,7 +92,6 @@ public class InGame extends JFrame implements ActionListener
 	public void paintComponent(Graphics g)
 	{
 		super.paint(g);
-		boolean isPlayer1 = true;
 		
 		isAlive = false;
 		isAlive2 = false;
@@ -112,13 +111,13 @@ public class InGame extends JFrame implements ActionListener
         		else
         		{
         			g.drawImage(stoneTile, xPixel, yPixel, null);
-        			if (map[row][col] instanceof Bomber && isPlayer1)
+        			if (map[row][col] instanceof Bomber && map[row][col].getId() == 1)
         			{
         				g.drawImage(bomber, xPixel, yPixel, bombers);
         				isAlive = true;
-        				isPlayer1 = false;
+        				System.out.println("nice" + map[row][col].getId());
         			}
-        			else if (map[row][col] instanceof Bomber && !isPlayer1)
+        			else if (map[row][col] instanceof Bomber && map[row][col].getId() == 2)
         			{
         				g.drawImage(bomber2, xPixel, yPixel, bombers);
         				isAlive2 = true;
