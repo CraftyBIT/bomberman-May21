@@ -15,13 +15,13 @@ public class MainMenu extends JFrame implements ActionListener
 	public MainMenu()
 	{
 		super("Bomberman");
-		setSize(966, 792);
+		setSize(960, 732);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);
 		
 		menuPanel = new JPanel(new GridLayout(1, 1));
-		menuPanel.setSize(966, 792);
+		menuPanel.setSize(960, 732);
 		menuPanel.setOpaque(true);
 		menuPanel.setBackground(Color.WHITE);
 		menuPanel.setLayout(null);
@@ -69,7 +69,6 @@ public class MainMenu extends JFrame implements ActionListener
 		{
 			menu.dispose();
 		}
-		
 	}
 	
 	public static void main(String[] args)
