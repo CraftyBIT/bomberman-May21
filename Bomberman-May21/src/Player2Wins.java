@@ -23,6 +23,7 @@ public class Player2Wins extends JFrame implements ActionListener
 		backButton = new JButton("Again?");
 		backButton.addActionListener(this);
 		winner = new JTextArea ("Player 2 Wins Lol");
+		winner.setFont(new Font("Arial Black", Font.BOLD, 16));
 		winner.setEditable(false);
 		
 		this.setLayout(new BorderLayout());
