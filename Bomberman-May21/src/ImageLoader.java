@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class ImageLoader
 {
-	private ImageIcon bomb, bomber, bomber2, bombPowerUp, breakable, explosion, explosionPowerUp, stoneTile, unbreakable;
+	private ImageIcon bomb, bomber, bomber2, bombPowerUp, breakable, explosion, explosionPowerUp, mainMenu, stoneTile, unbreakable;
 	
 	public ImageLoader()
 	{
@@ -19,6 +19,7 @@ public class ImageLoader
 			breakable = new ImageIcon(cldr.getResource("images/breakable.png"));
 			explosion = new ImageIcon(cldr.getResource("images/explosion.png"));
 			explosionPowerUp = new ImageIcon(cldr.getResource("images/powerup2.png"));
+			mainMenu = new ImageIcon(cldr.getResource("images/mainmenu.png"));
 			stoneTile = new ImageIcon(cldr.getResource("images/stonetile.png"));
 			unbreakable = new ImageIcon(cldr.getResource("images/unbreakable.png"));
 		}
@@ -43,6 +44,11 @@ public class ImageLoader
 		return bomber2;
 	}
 	
+	public ImageIcon getBombPowerUpImage()
+	{
+		return bombPowerUp;
+	}
+	
 	public ImageIcon getBreakableImage()
 	{
 		return breakable;
@@ -53,6 +59,16 @@ public class ImageLoader
 		return explosion;
 	}
 	
+	public ImageIcon getExplosionPowerUpImage()
+	{
+		return explosionPowerUp;
+	}
+	
+	public ImageIcon getMainMenuImage()
+	{
+		return mainMenu;
+	}
+	
 	public ImageIcon getStoneTileImage()
 	{
 		return stoneTile;
@@ -61,15 +77,5 @@ public class ImageLoader
 	public ImageIcon getUnbreakableImage()
 	{
 		return unbreakable;
-	}
-	
-	public ImageIcon getBombPowerUpImage()
-	{
-		return bombPowerUp;
-	}
-	
-	public ImageIcon getExplosionPowerUpImage()
-	{
-		return explosionPowerUp;
 	}
 }
