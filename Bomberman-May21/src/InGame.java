@@ -10,13 +10,13 @@ public class InGame extends JFrame implements ActionListener
 {
 	private JLayeredPane layered;
 	private JPanel bombers, iGame;
-	private JButton startButton;
 	private Actor[][] map;
 	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, stoneTile, unbreakable;
 	private Graphics dbGraphics;
-	private int xPixel = 2, yPixel = 30;
+	private int xPixel = 0, yPixel = 25;
 	private boolean gameOver = true, isAlive = false, isAlive2 = false;
 	private Map mapReader;
+	private int winner, checks; //1 - player 1 wins, 2 - player 2 wins, 3 - tie, 0 is invalid
 	
 	public Action actionTime;
 	
@@ -34,7 +34,7 @@ public class InGame extends JFrame implements ActionListener
 		mapReader = new Map("map.txt");
 		map = mapReader.getMap();
 		
-		setSize(966, 792);
+		setSize(960, 732);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);
@@ -57,28 +57,27 @@ public class InGame extends JFrame implements ActionListener
 		iGame.setOpaque(true);
 		iGame.setBackground(Color.WHITE);
 		iGame.setLayout(null);
-		iGame.setSize(966, 792);
+		iGame.setSize(960, 732);
 		
-		startButton = new JButton("Start");
-		startButton.setSize(966, 50);
-		startButton.setLocation(0, 704);
-		startButton.addActionListener(this);
-		
-		iGame.add(startButton);
 		layered.add(iGame);
 		
 		bombers = new JPanel();
 		bombers.setOpaque(false);
 		bombers.setBackground(Color.WHITE);
 		bombers.setLayout(null);
-		bombers.setSize(966, 792);
+		bombers.setSize(960, 732);
 		layered.add(bombers);
 		
 		setContentPane(layered);
 		setVisible(true);
 		
+		requestFocusInWindow();
+		gameOver = false;
+		
 		Timer timer = new javax.swing.Timer(10, this);
 		timer.start();
+		
+		checks = 0;
 	}
 	
 	public void paint(Graphics g)
@@ -92,7 +91,7 @@ public class InGame extends JFrame implements ActionListener
 	public void paintComponent(Graphics g)
 	{
 		super.paint(g);
-		
+		winner = 0;
 		isAlive = false;
 		isAlive2 = false;
 		
@@ -115,7 +114,6 @@ public class InGame extends JFrame implements ActionListener
         			{
         				g.drawImage(bomber, xPixel, yPixel, bombers);
         				isAlive = true;
-        				System.out.println("nice" + map[row][col].getId());
         			}
         			else if (map[row][col] instanceof Bomber && map[row][col].getId() == 2)
         			{
@@ -144,36 +142,53 @@ public class InGame extends JFrame implements ActionListener
         		}
         		xPixel += 64;
         	}
-        	xPixel = 2;
+        	xPixel = 0;
         	yPixel += 64;
         }
-		xPixel = 2;
-		yPixel = 30;
+		xPixel = 0;
+		yPixel = 25;
 		
-		if (!isAlive)
+		if (!isAlive && !isAlive2)
 		{
 			// Player 2 Wins
 			gameOver = true;
+			winner = 3;
 		}
 		else if (!isAlive2)
 		{
 			// Player 1 Wins
 			gameOver = true;
+			winner = 1;
 		}
-		else if (!isAlive && !isAlive2)
+		else if (!isAlive)
 		{
 			// gameOver
 			gameOver = true;
+			winner = 2;
+		}
+		if (winner != 0){
+			checks++;
+			if (checks == 100){
+				switch(winner) {
+			    case 1:
+			    	Player1Wins p1Wins = new Player1Wins();
+					dispose();
+					break;
+			    case 2:
+			    	Player2Wins p2Wins = new Player2Wins();
+					dispose();
+			        break;
+			    case 3:
+			    	BothLose losers = new BothLose();
+					dispose();
+					break;
+			}
+			}
 		}
 	}
 	
 	public void actionPerformed(ActionEvent event)
 	{
-		if (event.getSource() == startButton && gameOver)
-		{
-			requestFocusInWindow();
-			gameOver = false;
-		}
 		repaint();
 	}
 	
@@ -183,7 +198,6 @@ public class InGame extends JFrame implements ActionListener
 		{
 			if (!gameOver)
 			{
-				System.out.println(event.getKeyCode());
 				if (event.getKeyCode() == KeyEvent.VK_W)
 				{
 					mapReader.player1Move('W');
@@ -250,7 +264,6 @@ public class InGame extends JFrame implements ActionListener
 					mapReader.dropBomb('2');
 					map = mapReader.getMap();
 					repaint();
-					System.out.println("poop");
 				}
 			}
 		}
