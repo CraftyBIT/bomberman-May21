@@ -16,7 +16,7 @@ public class InGame extends JFrame implements ActionListener
 	private int xPixel = 0, yPixel = 25;
 	private boolean gameOver = true, isAlive = false, isAlive2 = false;
 	private Map mapReader;
-	private int winner = 0; //1 - player 1 wins, 2 - player 2 wins, 3 - tie, 0 is invalid
+	private int winner, checks; //1 - player 1 wins, 2 - player 2 wins, 3 - tie, 0 is invalid
 	
 	public Action actionTime;
 	
@@ -76,6 +76,8 @@ public class InGame extends JFrame implements ActionListener
 		
 		Timer timer = new javax.swing.Timer(10, this);
 		timer.start();
+		
+		checks = 0;
 	}
 	
 	public void paint(Graphics g)
@@ -89,7 +91,6 @@ public class InGame extends JFrame implements ActionListener
 	public void paintComponent(Graphics g)
 	{
 		super.paint(g);
-		
 		winner = 0;
 		isAlive = false;
 		isAlive2 = false;
@@ -147,11 +148,11 @@ public class InGame extends JFrame implements ActionListener
 		xPixel = 0;
 		yPixel = 25;
 		
-		if (!isAlive)
+		if (!isAlive && !isAlive2)
 		{
 			// Player 2 Wins
 			gameOver = true;
-			winner = 2;
+			winner = 3;
 		}
 		else if (!isAlive2)
 		{
@@ -159,27 +160,30 @@ public class InGame extends JFrame implements ActionListener
 			gameOver = true;
 			winner = 1;
 		}
-		else if (!isAlive && !isAlive2)
+		else if (!isAlive)
 		{
 			// gameOver
 			gameOver = true;
-			winner = 3;
+			winner = 2;
 		}
-		
-		if (winner == 1)
-		{
-			Player1Wins p1Wins = new Player1Wins();
-			dispose();
-		}
-		else if (winner == 2)
-		{
-			Player2Wins p2Wins = new Player2Wins();
-			dispose();
-		}
-		else if (winner == 3)
-		{
-			BothLose losers = new BothLose();
-			dispose();
+		if (winner != 0){
+			checks++;
+			if (checks == 100){
+				switch(winner) {
+			    case 1:
+			    	Player1Wins p1Wins = new Player1Wins();
+					dispose();
+					break;
+			    case 2:
+			    	Player2Wins p2Wins = new Player2Wins();
+					dispose();
+			        break;
+			    case 3:
+			    	BothLose losers = new BothLose();
+					dispose();
+					break;
+			}
+			}
 		}
 	}
 	
