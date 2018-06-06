@@ -4,28 +4,23 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
 public class InGame extends JFrame implements ActionListener
 {
+	private static final long serialVersionUID = 1L;
+	public static final int rLength = 11, cLength = 15, resolution = 64;
+	
 	private JLayeredPane layered;
 	private JPanel bombers, iGame;
 	private Actor[][] map;
 	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, stoneTile, unbreakable;
 	private Graphics dbGraphics;
 	private int xPixel = 0, yPixel = 25;
+	private int winner, checks; // 1 = Player 1 Wins, 2 = Player 2 Wins, 3 = Tie/Both Lose, 0 = Invalid
 	private boolean gameOver = true, isAlive = false, isAlive2 = false;
 	private Map mapReader;
-	private int winner, checks; //1 - player 1 wins, 2 - player 2 wins, 3 - tie, 0 is invalid
 	
 	public Action actionTime;
-	
-	public static final int rLength = 11, cLength = 15, resolution = 64;
-	
-	/*public static void main(String[] args) //would highly suggest removing main method from InGame()
-	{
-		InGame inGame = new InGame();
-	}*/
 	
 	public InGame()
 	{
@@ -88,6 +83,7 @@ public class InGame extends JFrame implements ActionListener
 		g.drawImage(dbImage, 0, 0, iGame);
 	}
 	
+	@SuppressWarnings("unused")
 	public void paintComponent(Graphics g)
 	{
 		super.paint(g);
@@ -150,39 +146,41 @@ public class InGame extends JFrame implements ActionListener
 		
 		if (!isAlive && !isAlive2)
 		{
-			// Player 2 Wins
 			gameOver = true;
 			winner = 3;
 		}
 		else if (!isAlive2)
 		{
-			// Player 1 Wins
 			gameOver = true;
 			winner = 1;
 		}
 		else if (!isAlive)
 		{
-			// gameOver
 			gameOver = true;
 			winner = 2;
 		}
+		
 		if (winner != 0){
 			checks++;
-			if (checks == 100){
-				switch(winner) {
-			    case 1:
-			    	Player1Wins p1Wins = new Player1Wins();
-					dispose();
-					break;
-			    case 2:
-			    	Player2Wins p2Wins = new Player2Wins();
-					dispose();
-			        break;
-			    case 3:
-			    	BothLose losers = new BothLose();
-					dispose();
-					break;
-			}
+			if (checks == 100)
+			{
+				switch(winner) 
+				{
+			    	case 1:
+			    		Player1Wins p1Wins = new Player1Wins();
+			    		dispose();
+			    		break;
+					
+			    	case 2:
+			    		Player2Wins p2Wins = new Player2Wins();
+			    		dispose();
+			    		break;
+			        
+			    	case 3:
+			    		BothLose losers = new BothLose();
+			    		dispose();
+			    		break;
+				}
 			}
 		}
 	}
@@ -204,21 +202,18 @@ public class InGame extends JFrame implements ActionListener
 					map = mapReader.getMap();
 					repaint();
 				}
-			
 				else if (event.getKeyCode() == KeyEvent.VK_S)
 				{
 					mapReader.player1Move('S');
 					map = mapReader.getMap();
 					repaint();
 				}
-			
 				else if (event.getKeyCode() == KeyEvent.VK_A)
 				{
 					mapReader.player1Move('A');
 					map = mapReader.getMap();
 					repaint();
 				}
-			
 				else if (event.getKeyCode() == KeyEvent.VK_D)
 				{
 					mapReader.player1Move('D');
@@ -232,35 +227,32 @@ public class InGame extends JFrame implements ActionListener
 					map = mapReader.getMap();
 					repaint();
 				}
-			
 				else if (event.getKeyCode() == KeyEvent.VK_DOWN)
 				{
 					mapReader.player2Move('S');
 					map = mapReader.getMap();
 					repaint();
 				}
-			
 				else if (event.getKeyCode() == KeyEvent.VK_LEFT)
 				{
 					mapReader.player2Move('A');
 					map = mapReader.getMap();
 					repaint();
 				}
-			
 				else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
 				{
 					mapReader.player2Move('D');
 					map = mapReader.getMap();
 					repaint();
 				}
-				
-				else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
+				else if (event.getKeyCode() == KeyEvent.VK_SPACE)
+				{
 					mapReader.dropBomb('1');
 					map = mapReader.getMap();
 					repaint();
 				}
-				
-				else if (event.getKeyCode() == KeyEvent.VK_CONTROL) {
+				else if (event.getKeyCode() == KeyEvent.VK_CONTROL)
+				{
 					mapReader.dropBomb('2');
 					map = mapReader.getMap();
 					repaint();

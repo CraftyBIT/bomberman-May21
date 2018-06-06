@@ -2,11 +2,11 @@
 
 public class PowerUp extends Actor
 {
-	private int powerUpId; // 0 = bomb, 1 = power
+	private int powerUpId; // 0 = Bomb Amount, 1 = Bomb Power
 	
-	public PowerUp(int row, int column)
+	public PowerUp()
 	{
-		super(row, column);
+		super();
 		powerUpId = (int)(Math.random() * 2);
 	}
 	

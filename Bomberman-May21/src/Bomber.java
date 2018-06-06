@@ -4,10 +4,10 @@ public class Bomber extends Actor
 {
 	private int myBombs, myPower, bombsPlaced, myplayerId;
 	
-	public Bomber(int row, int column, int playerId)
+	public Bomber(int playerId)
 	{
-		super(row, column);
-		myBombs = 1; // number of bombs placed at one time
+		super();
+		myBombs = 1; // Number of bombs that can be placed at any given moment
 		myPower = 1;
 		bombsPlaced = 0;
 		myplayerId = playerId;
@@ -32,18 +32,29 @@ public class Bomber extends Actor
 	{
 		return myPower;
 	}
-	public void placeBomb(){
+	
+	public void placeBomb()
+	{
 		bombsPlaced++;
 	}
-	public void exploded(){
+	
+	public void exploded()
+	{
 		bombsPlaced--;
 	}
-	public boolean ableToPlace(){
+	
+	public boolean ableToPlace()
+	{
 		if (bombsPlaced < myBombs)
+		{
 			return true;
+		}
+		
 		return false;
 	}
-	public int getId() {
+	
+	public int getId()
+	{
 		return myplayerId;
 	}
 }

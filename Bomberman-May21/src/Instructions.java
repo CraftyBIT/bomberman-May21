@@ -1,21 +1,13 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class Instructions extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JButton backButton;
 	private JTextArea instructions;
-	private JPanel jp;
 	
 	public Instructions()
 	{
@@ -40,7 +32,8 @@ public class Instructions extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent event)
 	{
-		if (event.getSource() == backButton){
+		if (event.getSource() == backButton)
+		{
 			this.dispose();
 		}
 		

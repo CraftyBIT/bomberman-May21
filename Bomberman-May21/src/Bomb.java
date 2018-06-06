@@ -2,13 +2,13 @@
 
 public class Bomb extends Actor
 {
-	private int bombPower, playerId;
-	private int time;
-	private final int explodeTime = 30; //explode after 3 seconds
+	private final int explodeTime = 30; // Bomb explodes after 3 seconds
+	private int bombPower, playerId, time, myRow, myColumn;
 	
 	public Bomb(int row, int column, int power, int player)
 	{
-		super(row, column);
+		myRow = row;
+		myColumn = column;
 		bombPower = power;		
 		playerId = player;
 		time = 0;
@@ -22,7 +22,18 @@ public class Bomb extends Actor
 			time = 0;
 			return true;
 		}
+		
 		return false;
+	}
+	
+	public int getRow()
+	{
+		return myRow;
+	}
+	
+	public int getColumn()
+	{
+		return myColumn;
 	}
 	
 	public int getPlayer()

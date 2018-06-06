@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
 public class Player1Wins extends JFrame implements ActionListener
 {
@@ -15,7 +14,7 @@ public class Player1Wins extends JFrame implements ActionListener
 	public Player1Wins()
 	{
 		super("Bomberman");
-		setSize(400,100);
+		setSize(400, 100);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationByPlatform(true);
@@ -26,19 +25,20 @@ public class Player1Wins extends JFrame implements ActionListener
 		winner.setFont(new Font("Arial Black", Font.BOLD, 16));
 		winner.setEditable(false);
 		
-		this.setLayout(new BorderLayout());
-		this.add(backButton, BorderLayout.SOUTH);
-		this.add(winner, BorderLayout.CENTER);
+		setLayout(new BorderLayout());
+		add(backButton, BorderLayout.SOUTH);
+		add(winner, BorderLayout.CENTER);
 		
 		setVisible(true);
 	}
 	
+	@SuppressWarnings("unused")
 	public void actionPerformed(ActionEvent event)
 	{
 		if (event.getSource() == backButton)
 		{
-			this.dispose();
 			InGame game = new InGame();
+			dispose();
 		}
 	}
 }

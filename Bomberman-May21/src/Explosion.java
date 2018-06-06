@@ -2,12 +2,13 @@
 
 public class Explosion extends Actor
 {
-	private int time;
-	private final int clearTime = 2; // ~quarter a second
+	private final int clearTime = 2; // About a quarter of a second
+	private int time, myRow, myColumn;
 	
 	public Explosion(int row, int column)
 	{
-		super(row, column);
+		myRow = row;
+		myColumn = column;
 		time = 0;
 	}
 	
@@ -19,6 +20,17 @@ public class Explosion extends Actor
 			time = 0;
 			return true;
 		}
+		
 		return false;
+	}
+	
+	public int getRow()
+	{
+		return myRow;
+	}
+	
+	public int getColumn()
+	{
+		return myColumn;
 	}
 }

@@ -1,7 +1,6 @@
 // Project Bomberman
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.net.URL;
 
 import java.util.*;
@@ -15,20 +14,20 @@ public class Map implements ActionListener
 	private int[][] intMap;
 	private Actor[][] actorMap;
 	private int rowLoc, rowLoc2, colLoc, colLoc2;
-	private int b1rl, b1cl, b2rl, b2cl; //stores bomb locations for players 1 and 2
+	private int b1rl, b1cl, b2rl, b2cl; // Stores bomb locations for Players 1 and 2
 	private boolean moved1, moved2;
-	Bomber player1, player2;
+	private Bomber player1, player2;
 	
 	public Map(String map) 
 	{
 		ClassLoader cldr = Map.class.getClassLoader();
 		readFile(cldr.getResource(map));
 		
-		rowLoc = actorMap[1][1].getRow();
-		colLoc = actorMap[1][1].getColumn();
+		rowLoc = 1;
+		colLoc = 1;
 		
-		rowLoc2 = actorMap[9][13].getRow();
-		colLoc2 = actorMap[9][13].getColumn();
+		rowLoc2 = 9;
+		colLoc2 = 13;
 		
 		b1rl = b1cl = b2rl = b2cl = -1;
 		
@@ -44,14 +43,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc - 1][colLoc].getId() == 0)
 				{
-					//actorMap[rowLoc][colLoc].addBombs();
 					player1.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc][colLoc].addPower();
 					player1.addPower();
 				}
+				
 				actorMap[rowLoc - 1][colLoc] = actorMap[rowLoc][colLoc];
 				actorMap[rowLoc][colLoc] = null;
 				rowLoc--;
@@ -72,14 +70,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc + 1][colLoc].getId() == 0)
 				{
-					//actorMap[rowLoc][colLoc].addBombs();
 					player1.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc][colLoc].addPower();
 					player1.addPower();
 				}
+				
 				actorMap[rowLoc + 1][colLoc] = actorMap[rowLoc][colLoc];
 				actorMap[rowLoc][colLoc] = null;
 				rowLoc++;
@@ -101,14 +98,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc][colLoc - 1].getId() == 0)
 				{
-					//actorMap[rowLoc][colLoc].addBombs();
 					player1.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc][colLoc].addPower();
 					player1.addPower();
 				}
+				
 				actorMap[rowLoc][colLoc - 1] = actorMap[rowLoc][colLoc];
 				actorMap[rowLoc][colLoc] = null;
 				colLoc--;
@@ -130,14 +126,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc][colLoc + 1].getId() == 0)
 				{
-					//actorMap[rowLoc][colLoc].addBombs();
 					player1.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc][colLoc].addPower();
 					player1.addPower();
 				}
+				
 				actorMap[rowLoc][colLoc + 1] = actorMap[rowLoc][colLoc];
 				actorMap[rowLoc][colLoc] = null;
 				colLoc++;
@@ -168,14 +163,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc2 - 1][colLoc2].getId() == 0)
 				{
-					//actorMap[rowLoc2][colLoc2].addBombs();
 					player2.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc2][colLoc2].addPower();
 					player2.addPower();
 				}
+				
 				actorMap[rowLoc2 - 1][colLoc2] = actorMap[rowLoc2][colLoc2];
 				actorMap[rowLoc2][colLoc2] = null;
 				rowLoc2--;
@@ -197,14 +191,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc2 + 1][colLoc2].getId() == 0)
 				{
-					//actorMap[rowLoc2][colLoc2].addBombs();
 					player2.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc2][colLoc2].addPower();
 					player2.addPower();
 				}
+				
 				actorMap[rowLoc2 + 1][colLoc2] = actorMap[rowLoc2][colLoc2];
 				actorMap[rowLoc2][colLoc2] = null;
 				rowLoc2++;
@@ -226,14 +219,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc2][colLoc2 - 1].getId() == 0)
 				{
-					//actorMap[rowLoc2][colLoc2].addBombs();
 					player2.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc2][colLoc2].addPower();
 					player2.addPower();
 				}
+				
 				actorMap[rowLoc2][colLoc2 - 1] = actorMap[rowLoc2][colLoc2];
 				actorMap[rowLoc2][colLoc2] = null;
 				colLoc2--;
@@ -255,14 +247,13 @@ public class Map implements ActionListener
 			{
 				if (actorMap[rowLoc2][colLoc2 + 1].getId() == 0)
 				{
-					//actorMap[rowLoc2][colLoc2].addBombs();
 					player2.addBombs();
 				}
 				else
 				{
-					//actorMap[rowLoc2][colLoc2].addPower();
 					player2.addPower();
 				}
+				
 				actorMap[rowLoc2][colLoc2 + 1] = actorMap[rowLoc2][colLoc2];
 				actorMap[rowLoc2][colLoc2] = null;
 				colLoc2++;
@@ -342,6 +333,7 @@ public class Map implements ActionListener
 					intMap[row][col] = file.nextInt();
 				}
 			}
+			
 			file.close();
 		}
 		catch (Exception e)
@@ -357,19 +349,19 @@ public class Map implements ActionListener
 			{
 				switch (intMap[row][col])
 				{
-					case 1: player1 = new Bomber(row, col, 1);
+					case 1: player1 = new Bomber(1);
 							actorMap[row][col] = player1;
 							break;
 							
-					case 2: player2 = new Bomber(row, col, 2);
+					case 2: player2 = new Bomber(2);
 							actorMap[row][col] = player2;
 							break;
 							
-					case 3: UnbreakableBlock uBlock = new UnbreakableBlock(row, col);
+					case 3: UnbreakableBlock uBlock = new UnbreakableBlock();
 							actorMap[row][col] = uBlock;
 							break;
 							
-					case 4: BreakableBlock bBlock = new BreakableBlock(row, col);
+					case 4: BreakableBlock bBlock = new BreakableBlock();
 							actorMap[row][col] = bBlock;
 							break;
 				}
@@ -382,8 +374,8 @@ public class Map implements ActionListener
 		actorMap[r][c] = new Explosion(r, c);
 		
 		boolean broken = false;
-		for (int u = 1; u <= power; u++) 
-		{ // up
+		for (int u = 1; u <= power; u++) // Upwards Explosion
+		{
 			if (!(actorMap[r + u][c] instanceof UnbreakableBlock) && !(actorMap[r + u][c] instanceof Bomb) && !broken) 
 			{
 				Explosion ex = new Explosion(r + u, c);
@@ -393,9 +385,10 @@ public class Map implements ActionListener
 				
 					if (1 == (int) (Math.random() * 2))
 					{
-						actorMap[r + u][c] = new PowerUp(r + u, c);
+						actorMap[r + u][c] = new PowerUp();
 					}
-					else{
+					else
+					{
 						actorMap[r + u][c] = ex;
 					}
 				}
@@ -411,8 +404,8 @@ public class Map implements ActionListener
 		}
 		
 		broken = false;
-		for (int d = 1; d <= power; d++) 
-		{ //down
+		for (int d = 1; d <= power; d++) // Downwards Explosion
+		{
 			if (!(actorMap[r - d][c] instanceof UnbreakableBlock) && !(actorMap[r - d][c] instanceof Bomb) && !broken) 
 			{
 				Explosion ex = new Explosion(r - d, c);
@@ -422,9 +415,10 @@ public class Map implements ActionListener
 				
 					if (1 == (int) (Math.random() * 2))
 					{
-						actorMap[r - d][c] = new PowerUp(r - d, c);
+						actorMap[r - d][c] = new PowerUp();
 					}
-					else{
+					else
+					{
 						actorMap[r - d][c] = ex;
 					}
 				}
@@ -440,8 +434,8 @@ public class Map implements ActionListener
 		}
 		
 		broken = false;
-		for (int l = 1; l <= power; l++) 
-		{ //left
+		for (int l = 1; l <= power; l++) // Left Explosion
+		{
 			if (!(actorMap[r][c - l] instanceof UnbreakableBlock) && !(actorMap[r][c - 1] instanceof Bomb) && !broken) 
 			{
 				Explosion ex = new Explosion(r, c - l);
@@ -451,9 +445,10 @@ public class Map implements ActionListener
 				
 					if (1 == (int) (Math.random() * 2))
 					{
-						actorMap[r][c - l] = new PowerUp(r, c - l);
+						actorMap[r][c - l] = new PowerUp();
 					}
-					else{
+					else
+					{
 						actorMap[r][c - l] = ex;
 					}
 					
@@ -470,8 +465,8 @@ public class Map implements ActionListener
 		}
 		
 		broken = false;
-		for (int right = 1; right <= power; right++) 
-		{ //right
+		for (int right = 1; right <= power; right++) // Right Explosion
+		{
 			if (!(actorMap[r][c + right] instanceof UnbreakableBlock) && !(actorMap[r][c + right] instanceof Bomb) && !broken) 
 			{
 				Explosion ex = new Explosion(r, c + right);
@@ -481,9 +476,10 @@ public class Map implements ActionListener
 				
 					if (1 == (int) (Math.random() * 2))
 					{
-						actorMap[r][c + right] = new PowerUp(r, c + right);
+						actorMap[r][c + right] = new PowerUp();
 					}
-					else{
+					else
+					{
 						actorMap[r][c + right] = ex;
 					}
 				}
@@ -522,12 +518,12 @@ public class Map implements ActionListener
 				}
 				else if (a instanceof Explosion) 
 				{
-						if (((Explosion) a).clear())
-						{
-							int tRow = a.getRow();
-							int tCol = a.getColumn();
-							actorMap[tRow][tCol] = null;
-						}
+					if (((Explosion) a).clear())
+					{
+						int tRow = ((Explosion) a).getRow();
+						int tCol = ((Explosion) a).getColumn();
+						actorMap[tRow][tCol] = null;
+					}
 				}
 			}
 		}

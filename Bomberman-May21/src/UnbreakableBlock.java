@@ -2,8 +2,8 @@
 
 public class UnbreakableBlock extends Actor
 {
-	public UnbreakableBlock(int row, int column)
+	public UnbreakableBlock()
 	{
-		super(row, column);
+		super();
 	}
 }
