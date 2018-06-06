@@ -10,6 +10,8 @@ public class BothLose extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JButton backButton;
+	private JButton backButton2;
+	private JButton backButton3;
 	private JTextArea winner;
 	
 	public BothLose()
@@ -22,6 +24,10 @@ public class BothLose extends JFrame implements ActionListener
 		
 		backButton = new JButton("Again?");
 		backButton.addActionListener(this);
+		backButton2 = new JButton("Back to Menu");
+		backButton2.addActionListener(this);
+		backButton3 = new JButton("Quit");
+		backButton3.addActionListener(this);
 		winner = new JTextArea ("You both lose Lol");
 		winner.setFont(new Font("Arial Black", Font.BOLD, 16));
 		winner.setEditable(false);
@@ -39,6 +45,15 @@ public class BothLose extends JFrame implements ActionListener
 		{
 			this.dispose();
 			InGame game = new InGame();
+		}
+		if (event.getSource() == backButton2)
+		{
+			this.dispose();
+			MainMenu memer = new MainMenu();
+		}
+		if (event.getSource() == backButton3)
+		{
+			this.dispose();
 		}
 	}
 }

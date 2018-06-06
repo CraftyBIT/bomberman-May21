@@ -15,7 +15,7 @@ public class Player1Wins extends JFrame implements ActionListener
 	public Player1Wins()
 	{
 		super("Bomberman");
-		setSize(400,400);
+		setSize(400,100);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationByPlatform(true);
