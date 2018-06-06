@@ -10,11 +10,10 @@ public class InGame extends JFrame implements ActionListener
 {
 	private JLayeredPane layered;
 	private JPanel bombers, iGame;
-	private JButton startButton;
 	private Actor[][] map;
 	private Image bomb, bomber, bomber2, bombPowerUp, breakable, dbImage, explosion, powerPowerUp, stoneTile, unbreakable;
 	private Graphics dbGraphics;
-	private int xPixel = 2, yPixel = 30;
+	private int xPixel = 0, yPixel = 25;
 	private boolean gameOver = true, isAlive = false, isAlive2 = false;
 	private Map mapReader;
 	
@@ -34,7 +33,7 @@ public class InGame extends JFrame implements ActionListener
 		mapReader = new Map("map.txt");
 		map = mapReader.getMap();
 		
-		setSize(966, 792);
+		setSize(960, 732);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);
@@ -57,25 +56,22 @@ public class InGame extends JFrame implements ActionListener
 		iGame.setOpaque(true);
 		iGame.setBackground(Color.WHITE);
 		iGame.setLayout(null);
-		iGame.setSize(966, 792);
+		iGame.setSize(960, 732);
 		
-		startButton = new JButton("Start");
-		startButton.setSize(966, 50);
-		startButton.setLocation(0, 704);
-		startButton.addActionListener(this);
-		
-		iGame.add(startButton);
 		layered.add(iGame);
 		
 		bombers = new JPanel();
 		bombers.setOpaque(false);
 		bombers.setBackground(Color.WHITE);
 		bombers.setLayout(null);
-		bombers.setSize(966, 792);
+		bombers.setSize(960, 732);
 		layered.add(bombers);
 		
 		setContentPane(layered);
 		setVisible(true);
+		
+		requestFocusInWindow();
+		gameOver = false;
 		
 		Timer timer = new javax.swing.Timer(10, this);
 		timer.start();
@@ -144,11 +140,11 @@ public class InGame extends JFrame implements ActionListener
         		}
         		xPixel += 64;
         	}
-        	xPixel = 2;
+        	xPixel = 0;
         	yPixel += 64;
         }
-		xPixel = 2;
-		yPixel = 30;
+		xPixel = 0;
+		yPixel = 25;
 		
 		if (!isAlive)
 		{
@@ -169,11 +165,6 @@ public class InGame extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent event)
 	{
-		if (event.getSource() == startButton && gameOver)
-		{
-			requestFocusInWindow();
-			gameOver = false;
-		}
 		repaint();
 	}
 	
