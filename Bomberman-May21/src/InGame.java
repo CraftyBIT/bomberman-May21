@@ -113,7 +113,6 @@ public class InGame extends JFrame implements ActionListener
         			{
         				g.drawImage(bomber, xPixel, yPixel, bombers);
         				isAlive = true;
-        				System.out.println("nice" + map[row][col].getId());
         			}
         			else if (map[row][col] instanceof Bomber && map[row][col].getId() == 2)
         			{
@@ -166,8 +165,21 @@ public class InGame extends JFrame implements ActionListener
 			gameOver = true;
 			winner = 3;
 		}
-		if (winner > 0){
-			
+		
+		if (winner == 1)
+		{
+			Player1Wins p1Wins = new Player1Wins();
+			dispose();
+		}
+		else if (winner == 2)
+		{
+			Player2Wins p2Wins = new Player2Wins();
+			dispose();
+		}
+		else if (winner == 3)
+		{
+			BothLose losers = new BothLose();
+			dispose();
 		}
 	}
 	
@@ -182,7 +194,6 @@ public class InGame extends JFrame implements ActionListener
 		{
 			if (!gameOver)
 			{
-				System.out.println(event.getKeyCode());
 				if (event.getKeyCode() == KeyEvent.VK_W)
 				{
 					mapReader.player1Move('W');
@@ -249,7 +260,6 @@ public class InGame extends JFrame implements ActionListener
 					mapReader.dropBomb('2');
 					map = mapReader.getMap();
 					repaint();
-					System.out.println("poop");
 				}
 			}
 		}
