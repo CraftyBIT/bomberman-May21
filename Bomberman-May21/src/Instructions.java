@@ -27,7 +27,8 @@ public class Instructions extends JFrame implements ActionListener
 		
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
-		instructions = new JTextArea ("BOMB EACH OTHER. WASD + Space for P1. Arrow Keys + R-Ctrl for P2. gogo");
+		instructions = new JTextArea ("WASD + Space for P1 \n\n\n\n\n\n Arrow Keys + R-Ctrl for P2 \n\n\n\n\n\n BOMB EACH OTHER!!!");
+		instructions.setFont(new Font("Arial Black", Font.BOLD, 12));
 		instructions.setEditable(false);
 		
 		this.setLayout(new BorderLayout());
