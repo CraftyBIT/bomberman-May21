@@ -8,7 +8,7 @@ public class MainMenu extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private JButton startButton, howToPlayButton, quitButton;
 	private JPanel menuPanel;
-	private JLabel name;
+	private Image mainMenu;
 	private static MainMenu menu;
 	private static InGame game;
 	
@@ -20,15 +20,14 @@ public class MainMenu extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);
 		
+		ImageLoader imageLoader = new ImageLoader();
+		mainMenu = imageLoader.getMainMenuImage().getImage();
+		
 		menuPanel = new JPanel(new GridLayout(1, 1));
 		menuPanel.setSize(960, 732);
 		menuPanel.setOpaque(true);
 		menuPanel.setBackground(Color.WHITE);
 		menuPanel.setLayout(null);
-		
-		name = new JLabel("Bomberman");
-		name.setFont(new Font("Serif", Font.PLAIN, 72));
-		name.setLocation(100, 0);
 		
 		startButton = new JButton("Start!");
 		startButton.setSize(350, 50);
@@ -45,13 +44,18 @@ public class MainMenu extends JFrame implements ActionListener
 		quitButton.setLocation(283, 200);
 		quitButton.addActionListener(this);
 		
-		menuPanel.add(name);
 		menuPanel.add(startButton);
 		menuPanel.add(howToPlayButton);
 		menuPanel.add(quitButton);
 		setContentPane(menuPanel);
 		
 		setVisible(true);
+	}
+	
+	public void paint(Graphics g)
+	{
+		super.paint(g);
+		g.drawImage(mainMenu, 0, 0, menuPanel);
 	}
 	
 	public void actionPerformed(ActionEvent event)

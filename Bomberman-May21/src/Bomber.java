@@ -16,7 +16,6 @@ public class Bomber extends Actor
 	public void addBombs()
 	{
 		myBombs++;
-		System.out.println("u fucked up sir");
 	}
 	
 	public void addPower()
