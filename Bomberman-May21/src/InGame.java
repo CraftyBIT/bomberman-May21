@@ -16,6 +16,7 @@ public class InGame extends JFrame implements ActionListener
 	private int xPixel = 0, yPixel = 25;
 	private boolean gameOver = true, isAlive = false, isAlive2 = false;
 	private Map mapReader;
+	private int winner = 0; //1 - player 1 wins, 2 - player 2 wins, 3 - tie, 0 is invalid
 	
 	public Action actionTime;
 	
@@ -89,6 +90,7 @@ public class InGame extends JFrame implements ActionListener
 	{
 		super.paint(g);
 		
+		winner = 0;
 		isAlive = false;
 		isAlive2 = false;
 		
@@ -150,16 +152,22 @@ public class InGame extends JFrame implements ActionListener
 		{
 			// Player 2 Wins
 			gameOver = true;
+			winner = 2;
 		}
 		else if (!isAlive2)
 		{
 			// Player 1 Wins
 			gameOver = true;
+			winner = 1;
 		}
 		else if (!isAlive && !isAlive2)
 		{
 			// gameOver
 			gameOver = true;
+			winner = 3;
+		}
+		if (winner > 0){
+			
 		}
 	}
 	
