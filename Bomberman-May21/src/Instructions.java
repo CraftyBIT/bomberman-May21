@@ -1,4 +1,7 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +15,12 @@ public class Instructions extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private JButton backButton;
 	private JTextArea instructions;
+	private JPanel jp;
 	
 	public Instructions()
 	{
 		super("Bomberman");
-		setSize(400,400);
+		setSize(560,350);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationByPlatform(true);
@@ -24,7 +28,7 @@ public class Instructions extends JFrame implements ActionListener
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
 		instructions = new JTextArea ("BOMB EACH OTHER. WASD + Space for P1. Arrow Keys + R-Ctrl for P2. gogo");
-
+		instructions.setEditable(false);
 		
 		this.setLayout(new BorderLayout());
 		this.add(backButton, BorderLayout.SOUTH);
@@ -40,4 +44,5 @@ public class Instructions extends JFrame implements ActionListener
 		}
 		
 	}
+	
 }
