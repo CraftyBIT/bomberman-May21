@@ -22,7 +22,6 @@ public class MainMenu extends JFrame implements ActionListener
 		ImageLoader imageLoader = new ImageLoader();
 		mainMenu = imageLoader.getMainMenuImage();
 
-		
 		menuPanel = new JPanel(new GridLayout(1, 1));
 		menuPanel.setSize(960, 732);
 		menuPanel.setOpaque(true);
