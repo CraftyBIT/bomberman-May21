@@ -59,6 +59,10 @@ Image Double Buffering Tutorial: Leann
 
 https://www.youtube.com/watch?v=4T3WJEH7zrc
 
+Adding a Background without Covering Buttons
+
+https://youtu.be/LzN-C3A5s9Y
+
 Image Loading and Map Loading Help
 
 Leann Gamboa
