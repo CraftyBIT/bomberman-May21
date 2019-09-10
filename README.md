@@ -5,7 +5,7 @@ A modification/PC Remake of the classic NES game Bomberman, adding dynamic multi
 
 Created by Richard Zhu, Charles Wang, Cornell Tran, David Zeng
 
-Voted as Top 3 best projects of the class.
+Voted as Top 3 best projects of the year
 
 ## To Do:
 
