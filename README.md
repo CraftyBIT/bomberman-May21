@@ -1,9 +1,11 @@
 # Project Bomberman
 AP Computer Science Final Project
-
 Ms. Neuhaus Period 2
 
-Created by Charles, Cornell, David, Richard
+Created by Richard ZhuCharles Wang, Cornell Tran, David Zeng
+
+A modification/PC port of the classic NES game Bomberman, modified to allowed multiplayer gameplay and updated graphics. In my opinion, much more fun than the original.
+Voted as Top 3 best projects of the class.
 
 ## To Do:
 
