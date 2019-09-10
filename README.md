@@ -1,8 +1,9 @@
 # Project Bomberman
 AP Computer Science Final Project
+
 Ms. Neuhaus Period 2
 
-Created by Richard ZhuCharles Wang, Cornell Tran, David Zeng
+Created by Richard Zhu, Charles Wang, Cornell Tran, David Zeng
 
 A modification/PC Remake of the classic NES game Bomberman, adding dynamic multiplayer gameplay, updated graphics, and a new control system.
 
