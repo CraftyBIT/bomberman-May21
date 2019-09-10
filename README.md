@@ -4,7 +4,8 @@ Ms. Neuhaus Period 2
 
 Created by Richard ZhuCharles Wang, Cornell Tran, David Zeng
 
-A modification/PC port of the classic NES game Bomberman, modified to allowed multiplayer gameplay and updated graphics. In my opinion, much more fun than the original.
+A modification/PC Remake of the classic NES game Bomberman, adding dynamic multiplayer gameplay, updated graphics, and a new control system.
+
 Voted as Top 3 best projects of the class.
 
 ## To Do:
