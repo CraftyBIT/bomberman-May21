@@ -3,11 +3,6 @@ A modification/PC Remake of the classic NES game Bomberman, adding dynamic multi
 
 Created by Richard Zhu, Charles Wang, Cornell Tran, David Zeng
 
-## To Do:
-
-Fix bug where powerups spawn on empty tiles
-make powerups less OP (less common)
-Fix bug when a player overtakes the other's Y pos, they switch textures
 ### Inspiration
 2D Original Bomberman 
 
